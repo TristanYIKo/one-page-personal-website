@@ -129,55 +129,6 @@ const PROJECTS = [
     live: "https://roastbot-three.vercel.app/",
     github: "https://github.com/TristanYIKo/AIResumeRoaster",
   },
-  {
-    slug: "earnings-call-analyzer",
-    short: "Earnings call analyzer",
-    tag: "NLP",
-    name: "Earnings Call Signal Analyzer",
-    kind: "NLP research",
-    summary: "Does management's language on earnings calls predict the stock's abnormal returns after earnings?",
-    highlights: [
-      "An NLP event study built around earnings call transcripts.",
-      "Scores tone with FinBERT and the Loughran-McDonald financial word lists.",
-      "Tests that tone against post-earnings abnormal returns.",
-    ],
-    stack: ["Python", "FinBERT", "Loughran-McDonald"],
-    live: "",
-    github: "",
-  },
-  {
-    slug: "housing-forecaster",
-    short: "Housing forecaster",
-    tag: "ML",
-    name: "Toronto Housing Price Forecaster",
-    kind: "Machine learning",
-    summary: "Forecasts Toronto housing prices from macroeconomic data and financial indicators.",
-    highlights: [
-      "Over 5.7 million rows of history from Statistics Canada and the Bank of Canada Valet API.",
-      "A Python ETL pipeline cleans and merges every source into one Supabase table.",
-      "Seven XGBoost models cover horizons from 1 to 36 months.",
-    ],
-    stack: ["Python", "pandas", "scikit-learn", "XGBoost", "Supabase"],
-    live: "https://toronto-housing-price-predictor.vercel.app/",
-    github: "https://github.com/TristanYIKo/TorontoHousingPricePredictor",
-  },
-  {
-    slug: "stock-classifier",
-    short: "Stock classifier",
-    tag: "ML",
-    name: "Market Direction Classifier",
-    kind: "Machine learning",
-    summary: "Will SPY, QQQ, DIA or IWM close higher in 1, 5 or 20 trading days?",
-    highlights: [
-      "Binary direction classifiers for four index ETFs at three horizons.",
-      "Time-based cross-validation with no look-ahead bias.",
-      "A daily GitHub Actions pipeline pulls new data, makes calls, and scores past ones.",
-      "Predictions served through a Next.js dashboard.",
-    ],
-    stack: ["Python", "Supabase", "GitHub Actions", "Next.js"],
-    live: "",
-    github: "https://github.com/TristanYIKo/StockMarketClassificationModel",
-  },
 ];
 
 // The #the-rest view. Placeholder text: rewrite it in your own words.
@@ -240,11 +191,10 @@ const THE_REST = {
 
   /* ---------- views ---------- */
 
-  function backButton(up, label) {
-    return h("button", {
-      class: "back", type: "button", "data-up": up,
-      "aria-label": up ? `Back to all ${up}` : "Back to home",
-    }, arrow("←"), " ", label);
+  // Every back button returns to the home screen.
+  function backButton() {
+    return h("button", { class: "back", type: "button", "aria-label": "Back to home" },
+      arrow("←"), " back");
   }
 
   function section(route, labelId, ...children) {
@@ -262,7 +212,7 @@ const THE_REST = {
     const title = kind === "experience" ? "Experience" : "Projects";
     const count = `${items.length} ${kind === "experience" ? (items.length === 1 ? "role" : "roles") : (items.length === 1 ? "project" : "projects")}`;
     return section(kind, `t-${kind}`,
-      backButton("", "back"),
+      backButton(),
       h("div", { class: "list-head", "data-a": true },
         h("h2", { class: "view-title", id: `t-${kind}`, tabindex: "-1" }, title),
         h("span", { class: "count" }, count)),
@@ -301,7 +251,7 @@ const THE_REST = {
     const noun = kind === "experience" ? "role" : "project";
 
     return section(route, titleId,
-      backButton(kind, `all ${kind}`),
+      backButton(),
       h("header", { class: "item-head", "data-a": true },
         h("p", { class: "eyebrow" }, head.eyebrow),
         h("h2", { class: "view-title", id: titleId, tabindex: "-1" }, head.title),
@@ -359,7 +309,7 @@ const THE_REST = {
           !isEmpty(p.github) && outLink(p.github, ["github ", arrow("↗")], { class: "item-link", "aria-label": `${p.name} on GitHub (opens in a new tab)` }),
         ].filter(Boolean)))),
       section("the-rest", "t-the-rest",
-        backButton("", "back"),
+        backButton(),
         h("h2", { class: "view-title", id: "t-the-rest", tabindex: "-1", "data-a": true }, "The rest"),
         h("div", { class: "scroll" },
           h("p", { class: "rest-intro", "data-a": true }, THE_REST.intro),
@@ -429,7 +379,6 @@ const THE_REST = {
     const r = decodeURIComponent(location.hash.slice(1)).replace(/^\/+|\/+$/g, "");
     return r && r !== "home" && viewFor(r) ? r : "";
   };
-  const parentOf = (route) => (route.includes("/") ? route.split("/")[0] : "");
 
   function show(route, { initial = false } = {}) {
     if (route === current) return;
@@ -479,12 +428,11 @@ const THE_REST = {
   render();
 
   stage.addEventListener("click", (e) => {
-    const back = e.target.closest(".back");
-    if (back) go(back.dataset.up || "");
+    if (e.target.closest(".back")) go("");
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && current) go(parentOf(current));
+    if (e.key === "Escape" && current) go("");
   });
 
   window.addEventListener("hashchange", () => show(routeFromHash()));

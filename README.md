@@ -17,7 +17,8 @@ Live: https://tristanyiko.github.io/one-page-personal-website/
 | `#projects/<slug>`       | one project's own page, with live and GitHub links   |
 | `#the-rest`              | the personal page                                    |
 
-Escape goes up one level; the browser back button works everywhere.
+Every "← back" button (and the Escape key) returns to the home screen; the
+browser back button retraces your steps.
 
 ## Edit the content
 
