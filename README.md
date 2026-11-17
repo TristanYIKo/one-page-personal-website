@@ -1,29 +1,45 @@
 # One Page Personal Website
 
 A one-screen personal site: plain HTML, CSS and JavaScript, no build step.
-It never scrolls; clicking a section swaps the content in place.
+The page never scrolls; clicking a section swaps the content in place, and long
+lists scroll inside their own panel.
 
 Live: https://tristanyiko.github.io/one-page-personal-website/
+
+## Pages
+
+| Link                     | Shows                                                |
+| ------------------------ | ---------------------------------------------------- |
+| `#` (home)               | intro, top 3 experiences, top 3 projects             |
+| `#experience`            | every role ("view all")                              |
+| `#experience/<slug>`     | one role's own page, with previous / next            |
+| `#projects`              | every project ("view all")                           |
+| `#projects/<slug>`       | one project's own page, with live and GitHub links   |
+| `#the-rest`              | the personal page                                    |
+
+Escape goes up one level; the browser back button works everywhere.
 
 ## Edit the content
 
 All text and links live at the top of `script.js`, under **EDIT YOUR CONTENT HERE**:
 
-| Object       | What it controls                                              |
-| ------------ | ------------------------------------------------------------- |
-| `LINKS`      | email, GitHub, LinkedIn, and an optional CV PDF               |
-| `PROFILE`    | name, tagline (`*stars*` mark the red words), roles, bio      |
-| `EXPERIENCE` | roles; the first three show on the home screen                |
-| `PROJECTS`   | projects and their GitHub links; the first three show on home |
-| `THE_REST`   | the personal page                                             |
+| Object       | What it controls                                                    |
+| ------------ | ------------------------------------------------------------------- |
+| `LINKS`      | email, GitHub, LinkedIn, and an optional CV PDF                     |
+| `PROFILE`    | name, tagline (`*stars*` mark the red words), roles, bio            |
+| `EXPERIENCE` | roles, newest first; the first three show on the home screen       |
+| `PROJECTS`   | projects; the first three show on the home screen                   |
+| `THE_REST`   | the personal page                                                   |
 
-Anything still set to `"TODO"` is a placeholder. It shows on the page as-is, and
-placeholder links do nothing, so they are easy to find.
+Each role and project has a `slug`, the short id in its link
+(`#projects/code-ranch`). Keep it lowercase with dashes, and unique in its list.
+A project's `live` and `github` links are optional: set either to `""` to hide it
+(for example, a private repo).
 
 To add a CV, drop the PDF in this folder and set `LINKS.cv = "cv.pdf"`.
 
-Keep each section to about four items. The layout shrinks the type to fit short
-screens, but the more you add, the smaller it gets.
+The layout shrinks the type a little to fit short screens before a list starts
+scrolling, so about four highlights per page keeps everything readable.
 
 Colours, spacing and the mountain heights are CSS variables at the top of `styles.css`.
 

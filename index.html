@@ -16,21 +16,24 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-<body data-view="home">
+<body class="is-loading is-first" data-view="home">
 
-  <!-- Mountains: two layers, pinned to the bottom, never stretched -->
+  <!-- Mountains: two layers pinned to the bottom, never stretched -->
   <div class="scene" aria-hidden="true">
     <div class="mountains">
-      <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
+      <svg class="mtn mtn-back" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
         <path fill="#E2D9C8" d="M0 170 L180 110 L320 150 L520 60 L700 140 L880 95 L1060 160 L1260 70 L1440 135 L1600 105 L1600 300 L0 300 Z"/>
+      </svg>
+      <svg class="mtn mtn-front" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
         <path fill="#D5C9B4" d="M0 230 L220 186 L420 222 L640 170 L860 214 L1080 178 L1300 224 L1480 194 L1600 208 L1600 300 L0 300 Z"/>
       </svg>
     </div>
   </div>
 
   <!--
-    The views below are empty shells. Their text comes from the
-    "EDIT YOUR CONTENT HERE" section at the top of script.js.
+    Only the home screen is written here. Every other view (the experience and
+    project lists, each role's and project's own page, and "the rest") is built
+    by script.js from the "EDIT YOUR CONTENT HERE" section at its top.
   -->
   <main class="stage" id="stage">
 
@@ -40,45 +43,30 @@
           <span>T</span><span>K</span><span class="seal-small">20</span><span class="seal-small">29</span>
         </div>
         <div>
-          <h1 class="name" id="home-name" tabindex="-1">Tristan Ko</h1>
-          <p class="tagline" data-slot="tagline"></p>
+          <h1 class="name" id="home-name" tabindex="-1" data-a>Tristan Ko</h1>
+          <p class="tagline" data-slot="tagline" data-a></p>
         </div>
       </header>
-      <p class="fine" data-slot="roles"></p>
-      <p class="bio" data-slot="bio"></p>
-      <a class="rest-link" href="#the-rest">the rest <span class="arrow" aria-hidden="true">→</span></a>
+      <p class="fine" data-slot="roles" data-a></p>
+      <p class="bio" data-slot="bio" data-a></p>
+      <a class="rest-link" href="#the-rest" data-a>the rest <span class="arrow" aria-hidden="true">→</span></a>
 
       <div class="lists">
         <nav class="list" aria-labelledby="home-xp-label">
-          <a class="list-label" id="home-xp-label" href="#experience">experience</a>
+          <div class="list-label" data-a>
+            <span id="home-xp-label">experience</span>
+            <a class="view-all" href="#experience">view all <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
           <ul data-slot="home-experience"></ul>
-          <a class="view-all" href="#experience" aria-label="View all experience">view all <span aria-hidden="true">→</span></a>
         </nav>
         <nav class="list" aria-labelledby="home-pj-label">
-          <a class="list-label" id="home-pj-label" href="#projects">projects</a>
+          <div class="list-label" data-a>
+            <span id="home-pj-label">projects</span>
+            <a class="view-all" href="#projects">view all <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
           <ul data-slot="home-projects"></ul>
-          <a class="view-all" href="#projects" aria-label="View all projects">view all <span aria-hidden="true">→</span></a>
         </nav>
       </div>
-    </section>
-
-    <section class="view view-detail" id="view-experience" aria-labelledby="xp-title" hidden>
-      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
-      <h2 class="view-title" id="xp-title" tabindex="-1">Experience</h2>
-      <ol class="xp" data-slot="experience"></ol>
-    </section>
-
-    <section class="view view-detail" id="view-projects" aria-labelledby="pj-title" hidden>
-      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
-      <h2 class="view-title" id="pj-title" tabindex="-1">Projects</h2>
-      <ul class="pj" data-slot="projects"></ul>
-    </section>
-
-    <section class="view view-detail" id="view-the-rest" aria-labelledby="rest-title" hidden>
-      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
-      <h2 class="view-title" id="rest-title" tabindex="-1">The rest</h2>
-      <p class="rest-intro" data-slot="rest-intro"></p>
-      <dl class="rest" data-slot="rest"></dl>
     </section>
 
   </main>
@@ -88,6 +76,7 @@
   </footer>
 
   <noscript>
+    <style>.contact { opacity: 1 !important; }</style>
     <p class="noscript">This site needs JavaScript to show its content.</p>
   </noscript>
 </body>
