@@ -167,9 +167,7 @@ const THE_REST = {
       line: "Strength training.",
       story: "Where you'll find me every day.",
       photos: [
-        { src: "images/rest/gym-1.webp", alt: "Back double-biceps pose in a gym locker room", position: "50% 28%" },
-        { src: "images/rest/gym-2.webp", alt: "Relaxed back pose in a gym locker room", position: "50% 30%" },
-        { src: "images/rest/gym-3.webp", alt: "Mirror selfie at the gym in a grey training shirt", position: "50% 32%" },
+        { src: "images/rest/gym.webp", alt: "Mirror selfie at the gym in a grey training shirt", position: "50% 32%" },
       ],
     },
     {
