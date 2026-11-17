@@ -126,7 +126,7 @@ body.is-detail .mountains { transform: translateY(50%); }
 .mtn-front { transition-delay: 90ms; }
 
 /* ---------- sun and moon (positioned by sky.js) ----------
-   It lives inside .mountains so it sinks with the horizon on detail views.
+   Shown on the home page only.
    --x: 0-100 across the screen. --alt: 0 at the horizon (along the ridge
    line, so it sets behind the peaks), 1 straight overhead. */
 
@@ -156,6 +156,9 @@ body.is-detail .mountains { transform: translateY(50%); }
 .sky.is-behind[data-body="sun"] { opacity: 0.26; }
 body:not(.is-loading) .sky { transition: opacity 600ms ease, transform 1300ms var(--ease-out); }
 body.is-first:not(.is-loading) .sky { transition-delay: 300ms; }
+
+/* home page only: it fades out as you leave and back in when you return */
+body.is-detail .sky { opacity: 0 !important; transition: opacity 250ms ease; }
 .sky .moon-dark { fill: #E4DCCC; }
 .sky .moon-lit { fill: #FDFBF5; }
 .sky .moon-rim { fill: none; stroke: #CBBFA9; stroke-width: 1.4; }

@@ -46,7 +46,7 @@ Colours, spacing and the mountain heights are CSS variables at the top of `style
 
 ## Sun and moon
 
-`sky.js` puts a sun or a moon over the mountains based on the visitor's own clock:
+`sky.js` puts a sun or a moon over the mountains on the home page, based on the visitor's own clock:
 
 - **Day:** the sun follows its real path through their sky. Its position comes
   from their local time and an approximate location taken from their time zone
