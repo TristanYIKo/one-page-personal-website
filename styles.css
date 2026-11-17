@@ -668,17 +668,17 @@ li:last-child > .row { border-bottom: 0; }
   grid-template-columns: 1.25fr 1fr 1fr;
   grid-template-rows: minmax(7.4em, auto) minmax(9.2em, 1fr) minmax(9.2em, 1fr);
   grid-template-areas:
-    "koko gym  food"
-    "koko snow taekwondo"
-    "koko snow golf";
+    "koko snowboarding food"
+    "koko gym          taekwondo"
+    "koko gym          poker";
   gap: 0.5em;
 }
 .tile-koko { grid-area: koko; }
-.tile-gym { grid-area: gym; }
+.tile-snowboarding { grid-area: snowboarding; }
 .tile-food { grid-area: food; }
-.tile-snowboarding { grid-area: snow; }
+.tile-gym { grid-area: gym; }
 .tile-taekwondo { grid-area: taekwondo; }
-.tile-golf { grid-area: golf; }
+.tile-poker { grid-area: poker; }
 
 .tile {
   position: relative;
@@ -698,14 +698,14 @@ li:last-child > .row { border-bottom: 0; }
 .tile:focus-visible { outline-offset: 2px; }
 
 /* top bars on the plain tiles */
-.tile-gym::before, .tile-food::before {
+.tile-snowboarding::before, .tile-food::before {
   content: "";
   height: 5px;
   flex: none;
   background: #CFC8BB;
 }
 .tile-food::before { background: #DCCBBB; }
-.tile-taekwondo, .tile-golf { background: #F0ECE4; border-color: #DAD1C1; }
+.tile-taekwondo, .tile-poker { background: #F0ECE4; border-color: #DAD1C1; }
 
 .tile-photo {
   position: relative;
@@ -715,14 +715,50 @@ li:last-child > .row { border-bottom: 0; }
   place-items: end center;
   background: #D4CBB6;
 }
-.tile-snowboarding .tile-photo { background: #CBD2D6; }
+.tile-gym .tile-photo { background: #2F2B26; }
 .tile-photo img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0;
+  transition: opacity 900ms ease, transform 1200ms var(--ease-out);
 }
+.tile-photo img.is-shown { opacity: 1; }
+.tile:hover .tile-photo img.is-shown { transform: scale(1.025); }
+
+/* dots for tiles with several photos */
+.tile-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.55em;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: 0.15em;
+}
+.tile-dot {
+  width: 1.3em;
+  height: 1.3em;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.tile-dot::before {
+  content: "";
+  display: block;
+  width: 0.42em;
+  height: 0.42em;
+  margin: auto;
+  border-radius: 50%;
+  background: rgba(248, 245, 238, 0.55);
+  transition: background-color 200ms ease, transform 200ms ease;
+}
+.tile-dot[aria-pressed="true"]::before { background: #F8F5EE; transform: scale(1.25); }
+.tile-dot:focus-visible { outline-offset: 0; }
 .tile-placeholder {
   position: relative;
   padding-bottom: 1.6em;
@@ -750,6 +786,7 @@ li:last-child > .row { border-bottom: 0; }
 
 /* photo tiles: the story washes in over the photo */
 .tile-photo .tile-story {
+  z-index: 2;
   position: absolute;
   inset: 0;
   display: flex;
@@ -764,16 +801,17 @@ li:last-child > .row { border-bottom: 0; }
 }
 .tile:hover .tile-photo .tile-story, .tile:focus-visible .tile-photo .tile-story, .tile.is-open .tile-photo .tile-story { opacity: 1; }
 
-/* little marks: a black belt, a golf ball */
+/* little marks: a black belt, a diamond */
 .tile-mark { position: absolute; right: 0.9em; bottom: 0.85em; }
 .tile-taekwondo .tile-mark { width: 2.5em; height: 0.3em; background: #1E1C19; }
-.tile-golf .tile-mark {
-  width: 0.72em;
-  height: 0.72em;
-  border: 1.5px solid var(--accent);
-  border-radius: 50%;
+.tile-poker .tile-mark {
+  width: 0.62em;
+  height: 0.62em;
+  margin: 0 0.1em 0.1em 0;
+  background: var(--accent);
+  transform: rotate(45deg);
 }
-.tile:not(.tile-taekwondo):not(.tile-golf) .tile-mark { display: none; }
+.tile:not(.tile-taekwondo):not(.tile-poker) .tile-mark { display: none; }
 
 /* ---------- contact links ---------- */
 
@@ -870,14 +908,14 @@ body.is-detail .contact {
     grid-auto-rows: auto;
     grid-template-areas:
       "koko koko"
-      "gym  food"
-      "snow snow"
-      "taekwondo golf";
+      "snowboarding food"
+      "gym gym"
+      "taekwondo poker";
   }
-  .tile-photo { min-height: 9em; }
-  .tile-snowboarding .tile-photo { min-height: 7em; }
+  .tile-photo { min-height: 13em; }
+  .tile-gym .tile-photo { min-height: 15em; }
   .tile-body { padding: 0.7em 0.85em 0.8em; }
-  .tile-taekwondo .tile-body, .tile-golf .tile-body { padding-bottom: 1.7em; }
+  .tile-taekwondo .tile-body, .tile-poker .tile-body { padding-bottom: 1.7em; }
 }
 
 @media (max-width: 900px) {
@@ -914,6 +952,7 @@ body.is-detail .contact {
   .card:hover .card-cta .arrow, .item-link:hover .arrow, .pager a:hover .arrow,
   .tl-link:hover .plus, .card:hover .card-shot img { transform: none; }
   .tile-line, .tile-text .tile-story { transform: none !important; }
+  .tile:hover .tile-photo img.is-shown { transform: none; }
 }
 
 @keyframes stamp-fade {

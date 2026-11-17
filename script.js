@@ -138,45 +138,49 @@ const PROJECTS = [
 ];
 
 // The #the-rest page: a grid of tiles. Hovering (or tapping) a tile swaps its
-// short line for the longer "story". The stories below are placeholders:
-// rewrite them in your own words.
-//   photo: an image in images/rest/ (e.g. "images/rest/koko.jpg"). "" shows a
-//          soft placeholder until you add one. Only the Koko and snowboarding
-//          tiles have a photo area.
+// short line for the longer "story". Rewrite any of these in your own words.
+//   photos: images in images/rest/. Only the Koko and gym tiles have a photo
+//           area; with more than one photo the tile cycles through them.
 const THE_REST = {
-  intro: "Away from the work: a dog, a barbell, a snowboard, and a lot of good food.",
+  intro: "A few things I spend time on outside of work.",
   tiles: [
     {
       id: "koko", title: "Koko", note: "the dog",
-      line: "Head of security. Chief nap officer.",
-      story: "Never misses a doorbell, a dropped snack, or the warm spot on the couch the second you stand up.",
-      photo: "", photoAlt: "Koko the dog", placeholder: "photo of Koko",
-    },
-    {
-      id: "gym", title: "gym",
-      line: "Most mornings start here.",
-      story: "Early, before the day gets going. Progress over perfect.",
-    },
-    {
-      id: "food", title: "food",
-      line: "Will travel for a good meal.",
-      story: "Always hunting for the next great spot. Ask me for a rec.",
+      line: "Family dog.",
+      story: "Usually on the couch, wherever the sun is.",
+      photos: [
+        { src: "images/rest/koko.webp", alt: "Koko, a small white dog, resting on a grey couch in the sun", position: "50% 42%" },
+      ],
     },
     {
       id: "snowboarding", title: "snowboarding",
-      line: "Winters belong to the mountain.",
-      story: "First chair whenever I can get it, still chasing a clean run through the trees.",
-      photo: "", photoAlt: "Snowboarding", placeholder: "snowboard photo",
+      line: "Every winter.",
+      story: "I try to get out to the mountains a few times each season.",
+    },
+    {
+      id: "food", title: "food",
+      line: "Trying new places.",
+      story: "Always looking for somewhere new to eat. Happy to share recommendations.",
+    },
+    {
+      id: "gym", title: "gym",
+      line: "Strength training.",
+      story: "Lifting a few times a week. It's the most consistent habit I have.",
+      photos: [
+        { src: "images/rest/gym-1.webp", alt: "Back double-biceps pose in a gym locker room", position: "50% 28%" },
+        { src: "images/rest/gym-2.webp", alt: "Relaxed back pose in a gym locker room", position: "50% 30%" },
+        { src: "images/rest/gym-3.webp", alt: "Mirror selfie at the gym in a grey training shirt", position: "50% 32%" },
+      ],
     },
     {
       id: "taekwondo", title: "taekwondo",
-      line: "Where the discipline started.",
-      story: "The mat is where I learned to show up, focus, and keep going.",
+      line: "Trained growing up.",
+      story: "Where I first picked up the habit of training regularly.",
     },
     {
-      id: "golf", title: "golf",
-      line: "Occasionally. Humbling every time.",
-      story: "A few good shots, a lot of lost balls, always a good walk.",
+      id: "poker", title: "poker",
+      line: "With friends.",
+      story: "Mostly casual games with friends. I like the probability side of it.",
     },
   ],
 };
@@ -369,22 +373,53 @@ const THE_REST = {
 
   // #the-rest: intro on the left, tiles on the right.
   function restTile(t) {
-    const hasPhotoArea = "photo" in t;
+    const photos = t.photos || null;
     const story = h("p", { class: "tile-story" }, t.story);
-    return h("article", { class: `tile tile-${t.id}${hasPhotoArea ? " has-photo" : ""}`, tabindex: "0", "data-a": true },
-      hasPhotoArea && h("div", { class: "tile-photo" },
-        t.photo
-          ? h("img", { src: t.photo, alt: t.photoAlt || t.title, loading: "lazy", decoding: "async" })
-          : h("span", { class: "tile-placeholder" }, t.placeholder || "photo"),
-        story),
+    const photoArea = photos && h("div", { class: "tile-photo" },
+      photos.length
+        ? photos.map((p, k) => h("img", {
+            class: k === 0 ? "is-shown" : null, src: p.src, alt: p.alt || t.title,
+            style: p.position ? `object-position: ${p.position}` : null,
+            loading: "lazy", decoding: "async",
+          }))
+        : h("span", { class: "tile-placeholder" }, "photo"),
+      photos.length > 1 && h("div", { class: "tile-dots", role: "group", "aria-label": `${t.title} photos` },
+        photos.map((_, k) => h("button", {
+          type: "button", class: "tile-dot", "aria-label": `Photo ${k + 1} of ${photos.length}`,
+          "aria-pressed": k === 0 ? "true" : "false", "data-index": k,
+        }))),
+      story);
+    return h("article", { class: `tile tile-${t.id}${photos ? " has-photo" : ""}`, tabindex: "0", "data-a": true },
+      photoArea,
       h("div", { class: "tile-body" },
         h("h3", { class: "tile-title" }, t.title,
           t.note && h("span", { class: "tile-note" }, ` · ${t.note}`)),
         h("div", { class: "tile-text" },
           h("p", { class: "tile-line" }, t.line),
-          !hasPhotoArea && story)),
+          !photos && story)),
       h("span", { class: "tile-mark", "aria-hidden": "true" }));
   }
+
+  // Show photo `k` in a tile that has several.
+  function showTilePhoto(tile, k) {
+    const imgs = tile.querySelectorAll(".tile-photo img");
+    const dots = tile.querySelectorAll(".tile-dot");
+    imgs.forEach((im, i) => im.classList.toggle("is-shown", i === k));
+    dots.forEach((d, i) => d.setAttribute("aria-pressed", String(i === k)));
+  }
+
+  // Multi-photo tiles crossfade slowly while the page is open (opacity only, so
+  // it also runs with reduced motion), never while someone is on the tile.
+  setInterval(() => {
+    if (document.hidden) return;
+    stage.querySelectorAll("#view-the-rest:not([hidden]) .tile-dots").forEach((dots) => {
+      const tile = dots.closest(".tile");
+      if (tile.matches(":hover, :focus-within, .is-open")) return;
+      const n = dots.children.length;
+      const cur = [...dots.children].findIndex((d) => d.getAttribute("aria-pressed") === "true");
+      showTilePhoto(tile, (cur + 1) % n);
+    });
+  }, 4200);
 
   function restPage() {
     const view = section("the-rest", "t-the-rest",
@@ -546,6 +581,8 @@ const THE_REST = {
     if (e.target.closest(".back")) { go(""); return; }
     const thumb = e.target.closest(".thumb");
     if (thumb) showShot(thumb);
+    const dot = e.target.closest(".tile-dot");
+    if (dot) { showTilePhoto(dot.closest(".tile"), Number(dot.dataset.index)); return; }
     const tile = e.target.closest(".tile");
     stage.querySelectorAll(".tile.is-open").forEach((t) => { if (t !== tile) t.classList.remove("is-open"); });
     if (tile) tile.classList.toggle("is-open");

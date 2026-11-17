@@ -46,9 +46,10 @@ in `images/projects/`, each with `alt` text. The first image shows first; with
 more than one, thumbnails appear underneath. About 1200 x 750 is plenty.
 
 On "the rest", each tile has a short `line` and a longer `story` that appears
-on hover (or tap on phones). The stories are placeholders to rewrite. The Koko
-and snowboarding tiles have a photo area: put a photo in `images/rest/` and set
-`photo: "images/rest/koko.jpg"`. Until then they show a soft placeholder.
+on hover (or tap on phones). The Koko and gym tiles have a photo area set by
+`photos` (images in `images/rest/`); with several photos the tile crossfades
+between them every few seconds, and the dots switch photos by hand. Add
+`position: "50% 30%"` to a photo to choose which part shows when it's cropped.
 
 To add a CV, drop the PDF in this folder and set `LINKS.cv = "cv.pdf"`.
 
