@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tristan Ko</title>
+  <meta name="description" content="Tristan Ko: data and engineering. Management Engineering at Waterloo, product analyst at Allstate.">
+  <meta name="theme-color" content="#F8F4EB">
+
+  <!-- Favicon: the TK seal as an inline SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-3 32 32)' opacity='.88'%3E%3Crect x='5' y='5' width='54' height='54' rx='3' fill='%23F8F4EB' stroke='%23B8322A' stroke-width='3'/%3E%3Cg fill='%23B8322A' font-family='Georgia,serif' text-anchor='middle'%3E%3Ctext x='21.5' y='31' font-size='19'%3ET%3C/text%3E%3Ctext x='42.5' y='31' font-size='19'%3EK%3C/text%3E%3Ctext x='21.5' y='50' font-size='11'%3E20%3C/text%3E%3Ctext x='42.5' y='50' font-size='11'%3E29%3C/text%3E%3C/g%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-view="home">
+
+  <!-- Mountains: two layers, pinned to the bottom, never stretched -->
+  <div class="scene" aria-hidden="true">
+    <div class="mountains">
+      <svg viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
+        <path fill="#E2D9C8" d="M0 170 L180 110 L320 150 L520 60 L700 140 L880 95 L1060 160 L1260 70 L1440 135 L1600 105 L1600 300 L0 300 Z"/>
+        <path fill="#D5C9B4" d="M0 230 L220 186 L420 222 L640 170 L860 214 L1080 178 L1300 224 L1480 194 L1600 208 L1600 300 L0 300 Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!--
+    The views below are empty shells. Their text comes from the
+    "EDIT YOUR CONTENT HERE" section at the top of script.js.
+  -->
+  <main class="stage" id="stage">
+
+    <section class="view view-home" id="view-home" aria-labelledby="home-name">
+      <header class="home-head">
+        <div class="seal" role="img" aria-label="Seal with the initials TK and the year 2029">
+          <span>T</span><span>K</span><span class="seal-small">20</span><span class="seal-small">29</span>
+        </div>
+        <div>
+          <h1 class="name" id="home-name" tabindex="-1">Tristan Ko</h1>
+          <p class="tagline" data-slot="tagline"></p>
+        </div>
+      </header>
+      <p class="fine" data-slot="roles"></p>
+      <p class="bio" data-slot="bio"></p>
+      <a class="rest-link" href="#the-rest">the rest <span class="arrow" aria-hidden="true">→</span></a>
+
+      <div class="lists">
+        <nav class="list" aria-labelledby="home-xp-label">
+          <a class="list-label" id="home-xp-label" href="#experience">experience</a>
+          <ul data-slot="home-experience"></ul>
+          <a class="view-all" href="#experience" aria-label="View all experience">view all <span aria-hidden="true">→</span></a>
+        </nav>
+        <nav class="list" aria-labelledby="home-pj-label">
+          <a class="list-label" id="home-pj-label" href="#projects">projects</a>
+          <ul data-slot="home-projects"></ul>
+          <a class="view-all" href="#projects" aria-label="View all projects">view all <span aria-hidden="true">→</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="view view-detail" id="view-experience" aria-labelledby="xp-title" hidden>
+      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
+      <h2 class="view-title" id="xp-title" tabindex="-1">Experience</h2>
+      <ol class="xp" data-slot="experience"></ol>
+    </section>
+
+    <section class="view view-detail" id="view-projects" aria-labelledby="pj-title" hidden>
+      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
+      <h2 class="view-title" id="pj-title" tabindex="-1">Projects</h2>
+      <ul class="pj" data-slot="projects"></ul>
+    </section>
+
+    <section class="view view-detail" id="view-the-rest" aria-labelledby="rest-title" hidden>
+      <button class="back" type="button" aria-label="Back to home"><span class="arrow" aria-hidden="true">←</span> back</button>
+      <h2 class="view-title" id="rest-title" tabindex="-1">The rest</h2>
+      <p class="rest-intro" data-slot="rest-intro"></p>
+      <dl class="rest" data-slot="rest"></dl>
+    </section>
+
+  </main>
+
+  <footer class="contact">
+    <nav aria-label="Contact" data-slot="links"></nav>
+  </footer>
+
+  <noscript>
+    <p class="noscript">This site needs JavaScript to show its content.</p>
+  </noscript>
+</body>
+</html>
