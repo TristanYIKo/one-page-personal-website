@@ -138,16 +138,17 @@ const PROJECTS = [
 ];
 
 // The #the-rest page: a grid of tiles. Hovering over a tile swaps its
-// short line for the longer "story". Rewrite any of these in your own words.
+// short line for the longer "story" (optional: leave it out and the tile
+// just shows its line). Rewrite any of these in your own words.
 //   photos: images in images/rest/. Only the Koko and gym tiles have a photo
 //           area; with more than one photo the tile cycles through them.
 const THE_REST = {
   intro: "A few things I spend time on outside of work.",
   tiles: [
     {
-      id: "koko", title: "Koko", note: "the dog",
-      line: "Family dog.",
-      story: "Mostly sleeps. Likes treats, especially sweet potato.",
+      id: "koko", title: "Koko", note: "our queen",
+      line: "Loves food.",
+      story: "Will bark at you unless you have food.",
       photos: [
         { src: "images/rest/koko.webp", alt: "Koko, a small white dog, resting on a grey couch", position: "50% 42%" },
       ],
@@ -173,12 +174,10 @@ const THE_REST = {
     {
       id: "taekwondo", title: "taekwondo",
       line: "Growing up.",
-      story: "A big part of my childhood. Still miss it.",
     },
     {
       id: "poker", title: "poker",
       line: "With friends.",
-      story: "Casual games with friends. Happy to play sometime.",
     },
   ],
 };
@@ -372,7 +371,7 @@ const THE_REST = {
   // #the-rest: intro on the left, tiles on the right.
   function restTile(t) {
     const photos = t.photos || null;
-    const story = h("p", { class: "tile-story" }, t.story);
+    const story = t.story ? h("p", { class: "tile-story" }, t.story) : null;
     const photoArea = photos && h("div", { class: "tile-photo" },
       photos.length
         ? photos.map((p, k) => h("img", {
@@ -387,7 +386,10 @@ const THE_REST = {
           "aria-pressed": k === 0 ? "true" : "false", "data-index": k,
         }))),
       story);
-    return h("article", { class: `tile tile-${t.id}${photos ? " has-photo" : ""}`, tabindex: "0", "data-a": true },
+    return h("article", {
+      class: `tile tile-${t.id}${photos ? " has-photo" : ""}${story ? " has-story" : ""}`,
+      tabindex: story ? "0" : null, "data-a": true,
+    },
       photoArea,
       h("div", { class: "tile-body" },
         h("h3", { class: "tile-title" }, t.title,

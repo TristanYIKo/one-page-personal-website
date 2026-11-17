@@ -822,7 +822,7 @@ li:last-child > .row { border-bottom: 0; }
   transition: opacity 260ms ease, transform 320ms var(--ease-out);
 }
 .tile-text .tile-story { opacity: 0; transform: translateY(6px); color: var(--body); }
-.tile:not(.has-photo):hover .tile-line, .tile:not(.has-photo):focus-visible .tile-line { opacity: 0; transform: translateY(-6px); }
+.tile.has-story:not(.has-photo):hover .tile-line, .tile.has-story:not(.has-photo):focus-visible .tile-line { opacity: 0; transform: translateY(-6px); }
 .tile:hover .tile-text .tile-story, .tile:focus-visible .tile-text .tile-story { opacity: 1; transform: none; }
 
 /* photo tiles: the story washes in over the photo */
