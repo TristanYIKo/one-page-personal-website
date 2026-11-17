@@ -175,7 +175,7 @@ const THE_REST = {
     {
       id: "taekwondo", title: "taekwondo",
       line: "Growing up.",
-      story: "Taught me things like discipline.",
+      story: "Really enjoyed it.",
     },
     {
       id: "poker", title: "poker",
