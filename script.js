@@ -137,7 +137,7 @@ const PROJECTS = [
   },
 ];
 
-// The #the-rest page: a grid of tiles. Hovering (or tapping) a tile swaps its
+// The #the-rest page: a grid of tiles. Hovering over a tile swaps its
 // short line for the longer "story". Rewrite any of these in your own words.
 //   photos: images in images/rest/. Only the Koko and gym tiles have a photo
 //           area; with more than one photo the tile cycles through them.
@@ -155,7 +155,7 @@ const THE_REST = {
     {
       id: "snowboarding", title: "snowboarding",
       line: "Since I was 6.",
-      story: "Started at 6. I try to make the first chair of the season.",
+      story: "The reason I look forward to winter.",
     },
     {
       id: "food", title: "food",
@@ -165,7 +165,7 @@ const THE_REST = {
     {
       id: "gym", title: "gym",
       line: "Strength training.",
-      story: "My most consistent habit.",
+      story: "Where you'll find me every day.",
       photos: [
         { src: "images/rest/gym-1.webp", alt: "Back double-biceps pose in a gym locker room", position: "50% 28%" },
         { src: "images/rest/gym-2.webp", alt: "Relaxed back pose in a gym locker room", position: "50% 30%" },
@@ -175,7 +175,7 @@ const THE_REST = {
     {
       id: "taekwondo", title: "taekwondo",
       line: "Growing up.",
-      story: "Did it growing up. It's where I learned to train regularly.",
+      story: "Taught me things like discipline.",
     },
     {
       id: "poker", title: "poker",
@@ -414,7 +414,7 @@ const THE_REST = {
     if (document.hidden) return;
     stage.querySelectorAll("#view-the-rest:not([hidden]) .tile-dots").forEach((dots) => {
       const tile = dots.closest(".tile");
-      if (tile.matches(":hover, :focus-within, .is-open")) return;
+      if (tile.matches(":hover, :focus-visible")) return;
       const n = dots.children.length;
       const cur = [...dots.children].findIndex((d) => d.getAttribute("aria-pressed") === "true");
       showTilePhoto(tile, (cur + 1) % n);
@@ -583,9 +583,6 @@ const THE_REST = {
     if (thumb) showShot(thumb);
     const dot = e.target.closest(".tile-dot");
     if (dot) { showTilePhoto(dot.closest(".tile"), Number(dot.dataset.index)); return; }
-    const tile = e.target.closest(".tile");
-    stage.querySelectorAll(".tile.is-open").forEach((t) => { if (t !== tile) t.classList.remove("is-open"); });
-    if (tile) tile.classList.toggle("is-open");
   });
 
   function showShot(thumb) {

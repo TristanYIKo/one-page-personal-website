@@ -690,7 +690,7 @@ li:last-child > .row { border-bottom: 0; }
   cursor: default;
   transition: border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
-.tile:hover, .tile:focus-visible, .tile.is-open {
+.tile:hover, .tile:focus-visible {
   border-color: var(--chip);
   background: #F8F5EE;
   box-shadow: 0 6px 18px -12px rgba(60, 50, 35, 0.35);
@@ -781,8 +781,8 @@ li:last-child > .row { border-bottom: 0; }
   transition: opacity 260ms ease, transform 320ms var(--ease-out);
 }
 .tile-text .tile-story { opacity: 0; transform: translateY(6px); color: var(--body); }
-.tile:not(.has-photo):hover .tile-line, .tile:not(.has-photo):focus-visible .tile-line, .tile:not(.has-photo).is-open .tile-line { opacity: 0; transform: translateY(-6px); }
-.tile:hover .tile-text .tile-story, .tile:focus-visible .tile-text .tile-story, .tile.is-open .tile-text .tile-story { opacity: 1; transform: none; }
+.tile:not(.has-photo):hover .tile-line, .tile:not(.has-photo):focus-visible .tile-line { opacity: 0; transform: translateY(-6px); }
+.tile:hover .tile-text .tile-story, .tile:focus-visible .tile-text .tile-story { opacity: 1; transform: none; }
 
 /* photo tiles: the story washes in over the photo */
 .tile-photo .tile-story {
@@ -799,7 +799,7 @@ li:last-child > .row { border-bottom: 0; }
   opacity: 0;
   transition: opacity 300ms ease;
 }
-.tile:hover .tile-photo .tile-story, .tile:focus-visible .tile-photo .tile-story, .tile.is-open .tile-photo .tile-story { opacity: 1; }
+.tile:hover .tile-photo .tile-story, .tile:focus-visible .tile-photo .tile-story { opacity: 1; }
 
 /* little marks: a black belt, a diamond */
 .tile-mark { position: absolute; right: 0.9em; bottom: 0.85em; }
