@@ -24,110 +24,116 @@ const PROFILE = {
   bio: "Passionate about solving problems through data and optimization.",
 };
 
+// Experience, newest first. The first three show on the home screen.
+// In any text, *stars* mark words drawn in the accent red.
 const EXPERIENCE = [
   {
     slug: "allstate",
-    short: "Allstate",            // name on the home screen
-    year: "2026",                 // right-hand label on the home screen
+    short: "Allstate",          // home screen name
+    year: "2026",               // home screen year
+    current: true,              // filled marker on the timeline
     company: "Allstate Canada",
     title: "Provincial Product Analyst",
-    term: "Sep – Dec 2026",
-    location: "Markham, ON (remote)",
-    summary: "Risk-selection strategy for the Ontario market, alongside the team's recurring performance reporting.",
+    term: "Fall 2026",          // right side of the timeline
+    when: "Sep – Dec 2026",     // top line of the role's page
+    where: "Remote",
+    result: "Built a reinsurance ceding approach adopted for Ontario.", // one line on the timeline
+    intro: "I was on the Ontario product team, which owns pricing, product rules and performance reporting. My work sat between the data and the decisions.",
     highlights: [
-      "Analyzed historical claims data to find underperforming customer segments, informing a safer, more profitable pricing strategy for Ontario.",
-      "Developed a new reinsurance ceding approach that was adopted for Ontario.",
-      "Built Excel models and Power BI dashboards for the team's recurring reports, and moved them onto a platform that refreshes the data automatically.",
-      "Automated report data pulls with Python and supported pricing and competitive analysis.",
+      { title: "Reinsurance ceding approach", text: "Used claims data to find unprofitable segments and designed a new way to cede them. Presented to leadership and *adopted for Ontario*." },
+      { title: "Automated reporting", text: "Rebuilt the team's recurring performance reports in Python so the data pulls and analysis run on their own instead of by hand." },
+      { title: "Dashboards and pricing support", text: "Maintained the Excel models and Power BI dashboards the team uses, and supported pricing and competitive analysis." },
     ],
-    tools: ["Excel", "Power BI", "Python"],
+    tools: ["Python", "Power BI", "Excel", "SQL"],
   },
   {
     slug: "mto",
     short: "MTO",
     year: "2026",
-    company: "Ontario Ministry of Transportation",
+    company: "Ministry of Transportation",
     title: "Technical Analyst",
-    term: "Jan – Apr 2026",
-    location: "Toronto, ON",
-    summary: "Software troubleshooting across internal web applications, and centralized databases to streamline internal tracking.",
+    term: "Winter 2026",
+    when: "Jan – Apr 2026",
+    where: "Toronto, ON",
+    result: "Replaced scattered spreadsheets with one central database for tracking work arrangements.",
+    intro: "I worked on the Ministry's internal web applications: keeping them running, fixing what broke between the layers, and building the databases behind them.",
     highlights: [
-      "Resolved data-flow and communication issues between the frontend, backend server and database to keep internal applications running smoothly.",
-      "Wrote database migration scripts to update large sets of records without data loss or errors.",
-      "Built a centralized database to track employee work arrangements, replacing scattered spreadsheets with one organized platform.",
+      { title: "Keeping internal apps running", text: "Traced and resolved data-flow and communication issues between the frontend, the backend server and the database." },
+      { title: "Safe database migrations", text: "Wrote migration scripts that updated large sets of records *without data loss or errors*." },
+      { title: "Work-arrangement tracker", text: "Built a centralized database to track employee work arrangements, *replacing scattered spreadsheets* with one organized platform." },
     ],
-    tools: ["SQL", "Databases", "Web applications"],
+    tools: ["Angular", "Spring Boot"],
   },
   {
     slug: "iovate",
     short: "Iovate",
     year: "2025",
-    company: "Iovate Health Sciences",
+    company: "Iovate",
     title: "Supply Chain Intern",
-    term: "May – Aug 2025",
-    location: "Oakville, ON",
-    summary: "Streamlined supply chain operations with automated inventory tools, data pipelines and performance dashboards.",
+    term: "Summer 2025",
+    when: "May – Aug 2025",
+    where: "Oakville, ON",
+    result: "Cut manual inventory planning time by over 90% with an automated reorder tool.",
+    intro: "I was on the supply chain team at Iovate Health Sciences, building tools that took manual planning and data entry off the team's plate.",
     highlights: [
-      "Created an automated Excel inventory tool for over 800 products that calculates reorder quantities and schedules, cutting manual planning time by over 90%.",
-      "Built Python scripts to upload and sync supply chain data automatically, eliminating manual entry mistakes.",
-      "Designed Power BI dashboards for team-wide metrics, and analyzed warehouse shipping errors to reduce fulfillment mistakes by 35%.",
+      { title: "Automated inventory planning", text: "Built an Excel tool covering more than 800 products that calculates reorder quantities and schedules, *cutting manual planning time by over 90%*." },
+      { title: "Data that syncs itself", text: "Wrote Python scripts that upload and sync supply chain data automatically, eliminating manual entry mistakes." },
+      { title: "Dashboards and fulfillment", text: "Designed Power BI dashboards for team-wide metrics and analyzed warehouse shipping errors to *reduce fulfillment mistakes by 35%*." },
     ],
-    tools: ["Excel", "Python", "Power BI"],
+    tools: ["Excel", "SQL", "Python", "Power BI"],
   },
 ];
 
-// "live" and "github" are optional: leave "" to hide that link (e.g. private repos).
+// Projects. The first three show on the home screen.
+// "live" and "github" are optional: "" hides that link (e.g. a private repo).
+// "images" are 16:10 screenshots or GIFs in images/projects/, first one shown first.
 const PROJECTS = [
   {
     slug: "code-ranch",
-    short: "Code Ranch",          // name on the home screen
-    tag: "Web",                   // right-hand label on the home screen
+    short: "Code Ranch",          // home screen name
+    tag: "Web",                   // home screen label
     name: "Code Ranch",
-    kind: "Typing game · Web app",
-    summary: "A cowboy-themed typing game where you take down bandits by typing real programming syntax with speed and accuracy.",
-    highlights: [
-      "High-noon duels settled by typing real lines of code against the clock.",
-      "Built to feel instant, with under 100ms latency on every keystroke.",
-      "Backed by Supabase (Postgres) for accounts and game data.",
-      "Next up: multiplayer shootouts, ranked leaderboards and new wanted posters.",
-    ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase"],
+    kind: "Web app · Typing game",
+    summary: "A cowboy typing game where you beat bandits by typing real code, fast.",
+    stack: ["Next.js", "React", "Supabase"],
     live: "https://code-ranch.vercel.app/",
-    github: "",
+    github: "",                   // repo is private
+    images: [
+      { src: "images/projects/code-ranch-1.webp", alt: "Code Ranch home page: a pixel-art desert duel" },
+      { src: "images/projects/code-ranch-2.webp", alt: "Choosing a game mode on the Code Ranch play screen" },
+      { src: "images/projects/code-ranch-3.webp", alt: "How the duel works and the game modes" },
+    ],
   },
   {
     slug: "factorfive",
     short: "FactorFive",
     tag: "Finance",
     name: "FactorFive",
-    kind: "Equity analysis · Web app",
-    summary: "Five-factor stock analysis, benchmarked against size-matched industry peers and the market a company actually trades in.",
-    highlights: [
-      "Scores a ticker 0 to 100 across growth, profitability, valuation, quality and analyst sentiment.",
-      "Every score shows its work: peer count, cohort quality and a confidence rating sit right beside it.",
-      "Relative strength against the S&P 500, a risk profile, news sentiment and a market calendar.",
-      "Hand-rolled SVG charts, with warm requests answering in about 43ms.",
-    ],
-    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Finnhub API"],
+    kind: "Web app · Equity analysis",
+    summary: "Five-factor stock analysis that benchmarks a company against size-matched industry peers, and shows its work.",
+    stack: ["Next.js", "TypeScript", "Finnhub API"],
     live: "https://factor-five.vercel.app/",
     github: "https://github.com/TristanYIKo/FactorFive",
+    images: [
+      { src: "images/projects/factorfive-1.webp", alt: "FactorFive home page with a sample score of 72" },
+      { src: "images/projects/factorfive-2.webp", alt: "FactorFive analysis of Apple (AAPL)" },
+      { src: "images/projects/factorfive-3.webp", alt: "The five factors and the market calendar" },
+    ],
   },
   {
     slug: "roastbot",
     short: "RoastBot",
     tag: "AI",
     name: "RoastBot",
-    kind: "AI resume feedback · Web app",
-    summary: "A playful AI resume roaster that turns brutal feedback into friendly, actionable career advice.",
-    highlights: [
-      "Upload a PDF, DOCX or TXT resume; it is parsed on the server.",
-      "A custom Google Gemini prompt returns structured JSON for the whole review.",
-      "Three panels: a comedic Roast, a grounded Reality Check, and Quick Fixes with specific edits.",
-      "Built after a run of applications with no callbacks, to get honest feedback without the awkwardness.",
-    ],
-    stack: ["Next.js", "React", "Framer Motion", "Gemini API"],
+    kind: "Web app · AI resume feedback",
+    summary: "An AI resume roaster that turns brutal feedback into friendly, actionable advice.",
+    stack: ["Next.js", "React", "Gemini API"],
     live: "https://roastbot-three.vercel.app/",
     github: "https://github.com/TristanYIKo/AIResumeRoaster",
+    images: [
+      { src: "images/projects/roastbot-1.webp", alt: "RoastBot upload screen with the robot mascot" },
+      { src: "images/projects/roastbot-2.webp", alt: "RoastBot upload screen, earlier illustrated design" },
+    ],
   },
 ];
 
@@ -207,71 +213,124 @@ const THE_REST = {
     }, children);
   }
 
-  // The consolidated list behind "view all".
-  function listView(kind, items, card) {
-    const title = kind === "experience" ? "Experience" : "Projects";
-    const count = `${items.length} ${kind === "experience" ? (items.length === 1 ? "role" : "roles") : (items.length === 1 ? "project" : "projects")}`;
-    return section(kind, `t-${kind}`,
-      backButton(),
-      h("div", { class: "list-head", "data-a": true },
-        h("h2", { class: "view-title", id: `t-${kind}`, tabindex: "-1" }, title),
-        h("span", { class: "count" }, count)),
-      h("div", { class: "scroll" },
-        h("ul", { class: `cards cards-${kind}` }, items.map((it) => h("li", { "data-a": true }, card(it))))));
-  }
+  const chips = (items, label) =>
+    h("ul", { class: "chips", "aria-label": label }, items.map((t) => h("li", {}, t)));
 
-  function xpCard(x) {
-    return h("a", { class: "card", href: `#experience/${x.slug}`, "aria-label": `${x.company}, ${x.title}. View role` },
-      h("div", { class: "card-head" },
-        h("span", { class: "card-title" }, x.company),
-        h("span", { class: "card-meta" }, x.term)),
-      h("p", { class: "card-sub" }, x.title),
-      h("p", { class: "card-blurb" }, x.summary),
-      h("span", { class: "card-cta" }, "view role ", arrow()));
-  }
-
-  function pjCard(p) {
-    return h("a", { class: "card", href: `#projects/${p.slug}`, "aria-label": `${p.name}. View project` },
-      h("div", { class: "card-head" },
-        h("span", { class: "card-title" }, p.name),
-        h("span", { class: "card-meta" }, p.tag)),
-      h("p", { class: "card-sub" }, p.kind),
-      h("p", { class: "card-blurb" }, p.summary),
-      h("span", { class: "card-cta" }, "view project ", arrow()));
-  }
-
-  // A role's or project's own page, with previous/next links along the bottom.
-  function itemView(kind, items, i, head, body) {
-    const it = items[i];
-    const route = `${kind}/${it.slug}`;
-    const titleId = `t-${kind}-${it.slug}`;
+  // Previous / next along the bottom of a role or project page.
+  function pager(kind, items, i) {
+    if (items.length < 2) return null;
     const prev = items[(i - 1 + items.length) % items.length];
     const next = items[(i + 1) % items.length];
-    const nameOf = (x) => x.short || x.name;
     const noun = kind === "experience" ? "role" : "project";
-
-    return section(route, titleId,
-      backButton(),
-      h("header", { class: "item-head", "data-a": true },
-        h("p", { class: "eyebrow" }, head.eyebrow),
-        h("h2", { class: "view-title", id: titleId, tabindex: "-1" }, head.title),
-        h("p", { class: "item-sub" }, head.sub)),
-      h("div", { class: "scroll" }, body),
-      items.length > 1 && h("nav", { class: "pager", "aria-label": `Other ${kind}`, "data-a": true },
-        h("a", { href: `#${kind}/${prev.slug}`, "aria-label": `Previous ${noun}: ${nameOf(prev)}` }, arrow("←"), " ", nameOf(prev)),
-        h("span", { class: "pager-count" }, `${i + 1} / ${items.length}`),
-        h("a", { href: `#${kind}/${next.slug}`, "aria-label": `Next ${noun}: ${nameOf(next)}` }, nameOf(next), " ", arrow())));
+    return h("nav", { class: "pager", "aria-label": `Other ${kind}`, "data-a": true },
+      h("a", { href: `#${kind}/${prev.slug}`, "aria-label": `Previous ${noun}: ${prev.short}` }, arrow("←"), " ", prev.short),
+      h("span", { class: "pager-count" }, `${i + 1} / ${items.length}`),
+      h("a", { href: `#${kind}/${next.slug}`, "aria-label": `Next ${noun}: ${next.short}` }, next.short, " ", arrow()));
   }
 
-  function itemBody(summary, highlights, label, tags, links) {
-    return [
-      summary && h("p", { class: "item-summary", "data-a": true }, summary),
-      highlights && highlights.length && h("ul", { class: "highlights" },
-        highlights.map((t) => h("li", { "data-a": true }, t))),
-      tags && tags.length && h("p", { class: "tags", "data-a": true },
-        h("span", { class: "tags-label" }, label), tags.join(" · ")),
-      links && links.length && h("p", { class: "item-links", "data-a": true }, links),
-    ];
+  // #experience: every role on a timeline. The current role has a filled marker.
+  function experienceList() {
+    return section("experience", "t-experience",
+      backButton(),
+      h("h2", { class: "view-title list-title", id: "t-experience", tabindex: "-1", "data-a": true }, "Experience"),
+      h("div", { class: "scroll" },
+        h("ol", { class: "timeline" }, EXPERIENCE.map((x) =>
+          h("li", { class: x.current ? "tl-item is-current" : "tl-item", "data-a": true },
+            h("span", { class: "tl-mark", "aria-hidden": "true" }),
+            h("a", { class: "tl-link", href: `#experience/${x.slug}` },
+              h("div", { class: "tl-head" },
+                h("p", { class: "tl-who" },
+                  h("span", { class: "tl-company" }, x.company),
+                  h("span", { class: "tl-role" }, x.title)),
+                h("span", { class: "tl-term" }, x.term)),
+              h("p", { class: "tl-result" }, accented(x.result)),
+              h("div", { class: "tl-foot" },
+                chips(x.tools, "Tools"),
+                h("span", { class: "tl-more" }, "more ",
+                  h("span", { class: "plus", "aria-hidden": "true" }, "+"),
+                  h("span", { class: "sr-only" }, ` about ${x.company}`)))))))));
+  }
+
+  // #experience/<slug>: one role, with numbered highlights.
+  function rolePage(x, i) {
+    const id = `t-experience-${x.slug}`;
+    return section(`experience/${x.slug}`, id,
+      backButton(),
+      h("header", { class: "role-head", "data-a": true },
+        h("p", { class: "eyebrow" }, [x.when, x.where].filter(Boolean).join(" · ")),
+        h("h2", { class: "view-title role-title", id, tabindex: "-1" },
+          x.company, " ", h("span", { class: "role-name" }, x.title))),
+      h("div", { class: "scroll" },
+        h("p", { class: "role-intro", "data-a": true }, accented(x.intro)),
+        h("ol", { class: "numbered" }, x.highlights.map((hl, k) =>
+          h("li", { "data-a": true },
+            h("span", { class: "num", "aria-hidden": "true" }, String(k + 1).padStart(2, "0")),
+            h("div", {},
+              h("h3", { class: "hl-title" }, hl.title),
+              h("p", { class: "hl-text" }, accented(hl.text)))))),
+        x.tools && x.tools.length && h("div", { class: "tools-row", "data-a": true },
+          h("span", { class: "tools-label" }, "tools"), chips(x.tools, "Tools"))),
+      pager("experience", EXPERIENCE, i));
+  }
+
+  // #projects: every project as a card.
+  function projectList() {
+    return section("projects", "t-projects",
+      backButton(),
+      h("h2", { class: "view-title list-title", id: "t-projects", tabindex: "-1", "data-a": true }, "Projects"),
+      h("div", { class: "scroll" },
+        h("ul", { class: "cards cards-projects" }, PROJECTS.map((p) => h("li", { "data-a": true },
+          h("a", { class: "card", href: `#projects/${p.slug}` },
+            p.images && p.images[0] && h("span", { class: "card-shot" },
+              h("img", { src: p.images[0].src, alt: "", width: 1200, height: 750, loading: "lazy", decoding: "async" })),
+            h("div", { class: "card-head" },
+              h("span", { class: "card-title" }, p.name),
+              h("span", { class: "card-meta" }, p.tag)),
+            h("p", { class: "card-blurb" }, p.summary),
+            h("span", { class: "card-cta" }, "view project ", arrow(),
+              h("span", { class: "sr-only" }, `: ${p.name}`))))))));
+  }
+
+  // Screenshot frame (a small browser window) with thumbnails underneath.
+  function gallery(p) {
+    const imgs = p.images || [];
+    const first = imgs[0];
+    const screen = first
+      ? h("img", { class: "shot", src: first.src, alt: first.alt, width: 1200, height: 750, loading: "lazy", decoding: "async" })
+      : h("p", { class: "screen-empty" }, "screenshot coming soon");
+    return h("div", { class: "gallery", "data-a": true },
+      h("div", { class: "frame" },
+        h("div", { class: "window" },
+          h("div", { class: "window-bar", "aria-hidden": "true" }, h("i"), h("i"), h("i")),
+          h("div", { class: "screen" }, screen))),
+      imgs.length > 1 && h("div", { class: "thumbs", role: "group", "aria-label": `${p.name} screenshots` },
+        imgs.map((im, k) => h("button", {
+          type: "button", class: "thumb", "aria-pressed": k === 0 ? "true" : "false",
+          "aria-label": `Screenshot ${k + 1}: ${im.alt}`, "data-src": im.src, "data-alt": im.alt,
+        }, h("img", { src: im.src, alt: "", width: 1200, height: 750, loading: "lazy", decoding: "async" })))));
+  }
+
+  // #projects/<slug>: screenshots on the left, the story on the right.
+  function projectPage(p, i) {
+    const id = `t-projects-${p.slug}`;
+    const links = [
+      !isEmpty(p.live) && outLink(p.live, ["live site ", arrow("↗")], { class: "item-link is-primary", "aria-label": `${p.name} live site (opens in a new tab)` }),
+      !isEmpty(p.github) && outLink(p.github, ["github ", arrow("↗")], { class: "item-link", "aria-label": `${p.name} on GitHub (opens in a new tab)` }),
+    ].filter(Boolean);
+    const view = section(`projects/${p.slug}`, id,
+      backButton(),
+      h("div", { class: "scroll" },
+        h("div", { class: "pj-layout" },
+          gallery(p),
+          h("div", { class: "pj-info", "data-a": true },
+            h("p", { class: "eyebrow" }, p.kind),
+            h("h2", { class: "view-title pj-title", id, tabindex: "-1" }, p.name),
+            h("p", { class: "pj-summary" }, p.summary),
+            p.stack && p.stack.length && h("p", { class: "pj-stack" }, p.stack.join(" · ")),
+            links.length && h("p", { class: "item-links" }, links)))),
+      pager("projects", PROJECTS, i));
+    view.classList.add("view-project");
+    return view;
   }
 
   function render() {
@@ -297,17 +356,10 @@ const THE_REST = {
 
     // lists, item pages, the rest
     const views = [
-      listView("experience", EXPERIENCE, xpCard),
-      ...EXPERIENCE.map((x, i) => itemView("experience", EXPERIENCE, i,
-        { eyebrow: `${x.term} · ${x.location}`, title: x.company, sub: x.title },
-        itemBody(x.summary, x.highlights, "tools", x.tools))),
-      listView("projects", PROJECTS, pjCard),
-      ...PROJECTS.map((p, i) => itemView("projects", PROJECTS, i,
-        { eyebrow: p.kind, title: p.name, sub: p.summary },
-        itemBody(null, p.highlights, "built with", p.stack, [
-          !isEmpty(p.live) && outLink(p.live, ["live site ", arrow("↗")], { class: "item-link", "aria-label": `${p.name} live site (opens in a new tab)` }),
-          !isEmpty(p.github) && outLink(p.github, ["github ", arrow("↗")], { class: "item-link", "aria-label": `${p.name} on GitHub (opens in a new tab)` }),
-        ].filter(Boolean)))),
+      experienceList(),
+      ...EXPERIENCE.map(rolePage),
+      projectList(),
+      ...PROJECTS.map(projectPage),
       section("the-rest", "t-the-rest",
         backButton(),
         h("h2", { class: "view-title", id: "t-the-rest", tabindex: "-1", "data-a": true }, "The rest"),
@@ -428,8 +480,25 @@ const THE_REST = {
   render();
 
   stage.addEventListener("click", (e) => {
-    if (e.target.closest(".back")) go("");
+    if (e.target.closest(".back")) { go(""); return; }
+    const thumb = e.target.closest(".thumb");
+    if (thumb) showShot(thumb);
   });
+
+  function showShot(thumb) {
+    const gal = thumb.closest(".gallery");
+    const shot = gal.querySelector(".shot");
+    if (!shot || thumb.getAttribute("aria-pressed") === "true") return;
+    gal.querySelectorAll(".thumb").forEach((t) => t.setAttribute("aria-pressed", String(t === thumb)));
+    shot.classList.add("is-swapping");
+    setTimeout(() => {
+      const done = () => shot.classList.remove("is-swapping");
+      shot.addEventListener("load", done, { once: true });
+      shot.src = thumb.dataset.src;
+      shot.alt = thumb.dataset.alt;
+      if (shot.complete) done();
+    }, reducedMotion.matches ? 0 : 140);
+  }
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && current) go("");

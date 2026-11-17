@@ -34,8 +34,16 @@ All text and links live at the top of `script.js`, under **EDIT YOUR CONTENT HER
 
 Each role and project has a `slug`, the short id in its link
 (`#projects/code-ranch`). Keep it lowercase with dashes, and unique in its list.
-A project's `live` and `github` links are optional: set either to `""` to hide it
-(for example, a private repo).
+In any text, `*stars*` mark words drawn in red.
+
+A role has a one-line `result` (shown on the timeline), a first-person `intro`,
+numbered `highlights` (each a `title` and `text`) and `tools` (shown as tags).
+Set `current: true` on the role you're in now to fill its timeline marker.
+
+A project has a `summary`, a `stack`, optional `live` and `github` links (`""`
+hides one, for example a private repo) and `images`: 16:10 screenshots or GIFs
+in `images/projects/`, each with `alt` text. The first image shows first; with
+more than one, thumbnails appear underneath. About 1200 x 750 is plenty.
 
 To add a CV, drop the PDF in this folder and set `LINKS.cv = "cv.pdf"`.
 
