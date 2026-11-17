@@ -135,14 +135,14 @@ body.is-detail .mountains { transform: translateY(50%); }
   --horizon: calc(var(--mtn) * 0.7);
   position: absolute;
   left: calc(var(--x, 50) * 1%);
-  bottom: calc(var(--horizon) + var(--alt, 0.4) * (100vh - var(--horizon) - 7vh));
+  bottom: calc(var(--horizon) + var(--alt, 0.4) * (100vh - var(--horizon) - 15vh));
   width: var(--orb);
   height: var(--orb);
   transform: translate(-50%, 50%);
   transition: opacity 1400ms ease 500ms, transform 1800ms var(--ease-out) 500ms;
 }
 @supports (height: 1dvh) {
-  .sky { bottom: calc(var(--horizon) + var(--alt, 0.4) * (100dvh - var(--horizon) - 7dvh)); }
+  .sky { bottom: calc(var(--horizon) + var(--alt, 0.4) * (100dvh - var(--horizon) - 15dvh)); }
 }
 .sky svg {
   display: block;
@@ -151,14 +151,9 @@ body.is-detail .mountains { transform: translateY(50%); }
   margin: -20%;
   overflow: visible;
 }
-.sky[data-body="sun"] { opacity: 0.85; }
-.sky .sun-glow, .sky .sun-fill, .sky .sun-ring { transition: opacity 600ms ease; }
-.sky .sun-ring { fill: none; stroke: var(--accent); stroke-width: 1.5px; opacity: 0; }
-/* behind the text: the sun keeps its outline and a light wash; the moon softens */
-.sky.is-behind .sun-fill { opacity: 0.16; }
-.sky.is-behind .sun-glow { opacity: 0; }
-.sky.is-behind .sun-ring { opacity: 0.75; }
-.sky.is-behind[data-body="moon"] { opacity: 0.7; }
+.sky[data-body="sun"] { opacity: 0.8; }
+.sky.is-behind { opacity: 0.5; }
+.sky.is-behind[data-body="sun"] { opacity: 0.26; }
 body:not(.is-loading) .sky { transition: opacity 600ms ease, transform 1300ms var(--ease-out); }
 body.is-first:not(.is-loading) .sky { transition-delay: 300ms; }
 .sky .moon-dark { fill: #E4DCCC; }

@@ -50,12 +50,13 @@ Colours, spacing and the mountain heights are CSS variables at the top of `style
 
 - **Day:** the sun follows its real path through their sky. Its position comes
   from their local time and an approximate location taken from their time zone
-  (no location prompt). It rises and sets behind the peaks, and the height is
-  drawn on a domed scale so the arc rides high even in winter.
+  (no location prompt). It rises and sets behind the peaks.
 - **Night:** the moon crosses from sunset to sunrise, highest around the middle
   of the night, in tonight's real phase.
-- When it drifts behind the text, the sun becomes a thin red ring with a light
-  wash and the moon softens, so nothing gets hard to read.
+- When it drifts behind the text it fades to a soft wash so nothing gets hard to read.
+
+To change how high the arcs ride, edit `ARC_LIFT` (sun, 1 = true scale) and
+`MOON_PEAK` near the middle of `sky.js`.
 
 Preview any time by adding `?time=` to the URL, e.g. `index.html?time=07:30` or
 `?time=2026-06-21T13:00`.
