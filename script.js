@@ -147,15 +147,15 @@ const THE_REST = {
     {
       id: "koko", title: "Koko", note: "the dog",
       line: "Family dog.",
-      story: "Usually on the couch, wherever the sun is.",
+      story: "Mostly sleeps. Likes treats, especially sweet potato.",
       photos: [
-        { src: "images/rest/koko.webp", alt: "Koko, a small white dog, resting on a grey couch in the sun", position: "50% 42%" },
+        { src: "images/rest/koko.webp", alt: "Koko, a small white dog, resting on a grey couch", position: "50% 42%" },
       ],
     },
     {
       id: "snowboarding", title: "snowboarding",
-      line: "Every winter.",
-      story: "I try to get out to the mountains a few times each season.",
+      line: "Since I was 6.",
+      story: "Started at 6. I try to make the first chair of the season.",
     },
     {
       id: "food", title: "food",
@@ -165,7 +165,7 @@ const THE_REST = {
     {
       id: "gym", title: "gym",
       line: "Strength training.",
-      story: "Lifting a few times a week. It's the most consistent habit I have.",
+      story: "My most consistent habit.",
       photos: [
         { src: "images/rest/gym-1.webp", alt: "Back double-biceps pose in a gym locker room", position: "50% 28%" },
         { src: "images/rest/gym-2.webp", alt: "Relaxed back pose in a gym locker room", position: "50% 30%" },
@@ -174,13 +174,13 @@ const THE_REST = {
     },
     {
       id: "taekwondo", title: "taekwondo",
-      line: "Trained growing up.",
-      story: "Where I first picked up the habit of training regularly.",
+      line: "Growing up.",
+      story: "Did it growing up. It's where I learned to train regularly.",
     },
     {
       id: "poker", title: "poker",
       line: "With friends.",
-      story: "Mostly casual games with friends. I like the probability side of it.",
+      story: "Casual games with friends. Happy to play sometime.",
     },
   ],
 };
