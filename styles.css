@@ -351,7 +351,34 @@ li:last-child > .row { border-bottom: 0; }
   display: inline-block;
   transition: color 180ms ease, transform 260ms var(--ease-out);
 }
-.row:hover .label { color: var(--accent); transform: translateX(3px); }
+.row:hover .label, .row:focus-visible .label { color: var(--accent); transform: translateX(3px); }
+
+/* Hover: a light sheen flashes across left to right while a soft red tint
+   wipes in behind the row and stays. It's brief and only runs when someone
+   points at a row, so it plays with reduced motion too. */
+.row { position: relative; isolation: isolate; }
+.row::before {
+  content: "";
+  position: absolute;
+  inset: 0 -0.55em;
+  z-index: -1;
+  border-radius: 2px;
+  pointer-events: none;
+  background:
+    linear-gradient(100deg, transparent 41%, rgba(255, 252, 247, 1) 50%, transparent 59%) no-repeat,
+    linear-gradient(90deg, rgba(184, 50, 42, 0.11), rgba(184, 50, 42, 0.05)) no-repeat;
+  background-size: 260% 100%, 0% 100%;
+  background-position: 100% 0, 0 0;
+  transition: background-size 260ms var(--ease-out);
+}
+.row:hover::before, .row:focus-visible::before {
+  background-size: 260% 100%, 100% 100%;
+  animation: row-sheen 520ms cubic-bezier(0.45, 0, 0.3, 1) both;
+}
+@keyframes row-sheen {
+  from { background-position: 100% 0, 0 0; }
+  to   { background-position: 0% 0, 0 0; }
+}
 
 /* ---------- shared detail chrome ---------- */
 
