@@ -537,6 +537,11 @@ const THE_REST = {
     current = route;
     clearTimeout(swapTimer);
 
+    // Analytics: Vercel's script only counts a page when the URL path changes,
+    // and every section here lives at "/", so report section changes by hand.
+    // (The first load is counted by the script itself.)
+    if (!initial && typeof window.va === "function") window.va("pageview", { path: "/" + route });
+
     // the mountains start moving straight away, alongside the fade-out
     document.body.classList.toggle("is-detail", route !== "");
 
