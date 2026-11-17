@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Hahmlet:wght@300;400&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <script src="sky.js" defer></script>
@@ -46,11 +46,27 @@
     <div class="mountains">
       <!-- sun by day, moon by night; placed by sky.js, sits behind both ranges -->
       <div class="sky"></div>
-      <svg class="mtn mtn-back" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
-        <path fill="#E2D9C8" d="M0 170 L180 110 L320 150 L520 60 L700 140 L880 95 L1060 160 L1260 70 L1440 135 L1600 105 L1600 300 L0 300 Z"/>
-      </svg>
-      <svg class="mtn mtn-front" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
-        <path fill="#D5C9B4" d="M0 230 L220 186 L420 222 L640 170 L860 214 L1080 178 L1300 224 L1480 194 L1600 208 L1600 300 L0 300 Z"/>
+      <!-- three ink-wash ridges, far to near: a touch darker at the peaks, fading into
+           mist. Kept close to the paper tones so they stay quiet. -->
+      <svg class="mtn" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
+        <defs>
+          <linearGradient id="inkFar" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#DDD5C6"/>
+            <stop offset="1" stop-color="#EDE7DC" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="inkMid" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D0C6B5"/>
+            <stop offset="0.85" stop-color="#E6DED0" stop-opacity="0.4"/>
+          </linearGradient>
+          <linearGradient id="inkNear" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C6BBA8"/>
+            <stop offset="0.35" stop-color="#D8CEBD"/>
+            <stop offset="1" stop-color="#E2DACB"/>
+          </linearGradient>
+        </defs>
+        <path class="ridge ridge-far" fill="url(#inkFar)" d="M0 140 L180 80 L320 115 L520 35 L700 105 L880 65 L1060 125 L1260 45 L1440 98 L1600 70 L1600 300 L0 300 Z"/>
+        <path class="ridge ridge-mid" fill="url(#inkMid)" d="M0 200 L220 155 L420 190 L640 125 L860 185 L1080 145 L1300 200 L1480 160 L1600 180 L1600 300 L0 300 Z"/>
+        <path class="ridge ridge-near" fill="url(#inkNear)" d="M0 250 L280 215 L520 238 L800 205 L1080 240 L1360 212 L1600 230 L1600 300 L0 300 Z"/>
       </svg>
     </div>
   </div>

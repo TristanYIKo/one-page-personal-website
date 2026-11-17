@@ -123,9 +123,13 @@ body.is-detail .mountains { transform: translateY(50%); }
   display: block;
   width: 100%;
   height: 100%;
+}
+.ridge {
+  transform-box: fill-box;
   transition: transform 1000ms var(--ease-out), opacity 700ms ease;
 }
-.mtn-front { transition-delay: 90ms; }
+.ridge-mid { transition-delay: 70ms; }
+.ridge-near { transition-delay: 140ms; }
 
 /* ---------- sun and moon (positioned by sky.js) ----------
    Shown on the home page only.
@@ -167,9 +171,10 @@ body.is-detail .sky { opacity: 0 !important; transition: opacity 250ms ease; }
 
 body.is-loading .sky { opacity: 0 !important; transform: translate(-50%, calc(50% + 28px)); }
 
-/* opening: both ranges start below the horizon and rise, the far one first */
-body.is-loading .mtn-back { transform: translateY(55%); opacity: 0; }
-body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
+/* opening: the ridges start below the horizon and rise, far to near */
+body.is-loading .ridge-far { transform: translateY(45%); opacity: 0; }
+body.is-loading .ridge-mid { transform: translateY(60%); opacity: 0; }
+body.is-loading .ridge-near { transform: translateY(80%); opacity: 0; }
 
 /* ---------- stage + views ---------- */
 
@@ -275,6 +280,10 @@ body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
   gap: 1.15em;
 }
 
+/* The three home-page lines use Hahmlet, a slightly heavier serif; the rest
+   of the site stays in Gowun Batang. */
+.name, .tagline, .bio { font-family: "Hahmlet", "Gowun Batang", Georgia, serif; }
+
 .name {
   font-size: 2.55em;
   font-weight: 400;
@@ -286,6 +295,7 @@ body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
 .tagline {
   margin-top: 0.2em;
   font-size: 1.2em;
+  font-weight: 300;
   color: var(--body);
 }
 .tagline em { font-style: normal; color: var(--accent); }
@@ -301,6 +311,7 @@ body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
   margin-top: 1em;
   max-width: 27em;
   font-size: 1.42em;
+  font-weight: 300;
   line-height: 1.55;
   color: var(--body);
 }
@@ -968,11 +979,10 @@ body.is-detail .contact {
   :root { --rise: 0px; }
   .view.is-out { transform: none; }
   .mountains { transition: none; }
-  body.is-loading .mtn-back,
-  body.is-loading .mtn-front { transform: none; }
+  body.is-loading .ridge { transform: none; }
   body.is-loading .sky { transform: translate(-50%, 50%); }
   .sky { transition: opacity 1000ms ease 400ms; }
-  .mtn { transition: opacity 700ms ease; }
+  .ridge { transition: opacity 700ms ease; }
   .view.is-in .seal { animation-name: stamp-fade; animation-duration: 500ms; }
   .arrow, .row .label { transition: none; }
   .rest-link:hover .arrow, .view-all:hover .arrow, .row:hover .label, .back:hover .arrow,
