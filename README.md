@@ -4,7 +4,8 @@ A one-screen personal site: plain HTML, CSS and JavaScript, no build step.
 The page never scrolls; clicking a section swaps the content in place, and long
 lists scroll inside their own panel.
 
-Live: https://tristanyiko.github.io/one-page-personal-website/
+Live: https://www.tristanko.ca (Vercel). A copy also runs on GitHub Pages at
+https://tristanyiko.github.io/one-page-personal-website/
 
 ## Pages
 
@@ -87,7 +88,8 @@ then visit http://localhost:8000.
 
 ## Redeploy
 
-GitHub Pages serves the `main` branch root, so pushing is deploying:
+Pushing `main` deploys everywhere: Vercel rebuilds www.tristanko.ca and GitHub
+Pages updates its copy, both within a minute or two.
 
 ```bash
 git add -A
@@ -95,4 +97,9 @@ git commit -m "Update content"
 git push
 ```
 
-The live site updates a minute or two later.
+## Analytics
+
+Vercel Web Analytics is loaded from a small script at the bottom of the `<head>`
+in `index.html`. It only runs on tristanko.ca and Vercel URLs, and reports each
+section as its own page (`/experience`, `/projects/roastbot`). Visitor numbers
+are on the project's Analytics tab in Vercel.

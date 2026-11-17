@@ -16,6 +16,28 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <script src="sky.js" defer></script>
+
+  <!-- Vercel Web Analytics. Loads only on the Vercel deployment (tristanko.ca),
+       not on GitHub Pages or local previews, where the script doesn't exist. -->
+  <script>
+    (function () {
+      if (!/(^|\.)tristanko\.ca$|\.vercel\.app$/.test(location.hostname)) return;
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      // Count each section as its own page: /#projects/roastbot -> /projects/roastbot
+      window.va("beforeSend", function (event) {
+        var route = location.hash.replace(/^#\/?/, "");
+        var url = new URL(event.url);
+        url.hash = "";
+        if (route && route !== "home") url.pathname = "/" + route;
+        event.url = url.toString();
+        return event;
+      });
+      var s = document.createElement("script");
+      s.defer = true;
+      s.src = "/_vercel/insights/script.js";
+      document.head.appendChild(s);
+    })();
+  </script>
 </head>
 <body class="is-loading is-first" data-view="home">
 
