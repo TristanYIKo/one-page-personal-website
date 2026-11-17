@@ -458,13 +458,13 @@ const THE_REST = {
     setTimeout(() => {
       show(route, { initial: true });
       // later navigations use a tighter stagger than the opening
-      setTimeout(() => document.body.classList.remove("is-first"), 1400);
-    }, reducedMotion.matches ? 60 : 260);
+      setTimeout(() => document.body.classList.remove("is-first"), 1100);
+    }, reducedMotion.matches ? 40 : 140);
   };
 
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(start);
-    setTimeout(start, 1500); // never hold the page for a slow font
+    setTimeout(start, 1000); // never hold the page for a slow font
   } else {
     start();
   }

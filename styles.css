@@ -67,7 +67,7 @@ body {
   --stagger: 34ms;
 }
 
-body.is-first { --stagger: 72ms; }
+body.is-first { --stagger: 50ms; }
 
 body:not([data-view="home"]) {
   --stage-bottom: max(calc(var(--mtn) * 0.5), calc(var(--footer-bottom) + 2.6rem));
@@ -121,9 +121,9 @@ body.is-detail .mountains { transform: translateY(50%); }
   display: block;
   width: 100%;
   height: 100%;
-  transition: transform 1300ms var(--ease-out), opacity 900ms ease;
+  transition: transform 1000ms var(--ease-out), opacity 700ms ease;
 }
-.mtn-front { transition-delay: 140ms; }
+.mtn-front { transition-delay: 90ms; }
 
 /* ---------- sun and moon (positioned by sky.js) ----------
    It lives inside .mountains so it sinks with the horizon on detail views.
@@ -135,14 +135,14 @@ body.is-detail .mountains { transform: translateY(50%); }
   --horizon: calc(var(--mtn) * 0.7);
   position: absolute;
   left: calc(var(--x, 50) * 1%);
-  bottom: calc(var(--horizon) + var(--alt, 0.4) * (100vh - var(--horizon) - 15vh));
+  bottom: calc(var(--horizon) + var(--alt, 0.4) * (100vh - var(--horizon) - 7vh));
   width: var(--orb);
   height: var(--orb);
   transform: translate(-50%, 50%);
   transition: opacity 1400ms ease 500ms, transform 1800ms var(--ease-out) 500ms;
 }
 @supports (height: 1dvh) {
-  .sky { bottom: calc(var(--horizon) + var(--alt, 0.4) * (100dvh - var(--horizon) - 15dvh)); }
+  .sky { bottom: calc(var(--horizon) + var(--alt, 0.4) * (100dvh - var(--horizon) - 7dvh)); }
 }
 .sky svg {
   display: block;
@@ -151,11 +151,16 @@ body.is-detail .mountains { transform: translateY(50%); }
   margin: -20%;
   overflow: visible;
 }
-.sky[data-body="sun"] { opacity: 0.8; }
-.sky.is-behind { opacity: 0.5; }
-.sky.is-behind[data-body="sun"] { opacity: 0.26; }
-body:not(.is-loading) .sky { transition: opacity 600ms ease, transform 1800ms var(--ease-out); }
-body.is-first:not(.is-loading) .sky { transition-delay: 500ms; }
+.sky[data-body="sun"] { opacity: 0.85; }
+.sky .sun-glow, .sky .sun-fill, .sky .sun-ring { transition: opacity 600ms ease; }
+.sky .sun-ring { fill: none; stroke: var(--accent); stroke-width: 1.5px; opacity: 0; }
+/* behind the text: the sun keeps its outline and a light wash; the moon softens */
+.sky.is-behind .sun-fill { opacity: 0.16; }
+.sky.is-behind .sun-glow { opacity: 0; }
+.sky.is-behind .sun-ring { opacity: 0.75; }
+.sky.is-behind[data-body="moon"] { opacity: 0.7; }
+body:not(.is-loading) .sky { transition: opacity 600ms ease, transform 1300ms var(--ease-out); }
+body.is-first:not(.is-loading) .sky { transition-delay: 300ms; }
 .sky .moon-dark { fill: #E4DCCC; }
 .sky .moon-lit { fill: #FDFBF5; }
 .sky .moon-rim { fill: none; stroke: #CBBFA9; stroke-width: 1.4; }
@@ -208,8 +213,8 @@ body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
   opacity: 1;
   transform: none;
   transition:
-    opacity 560ms var(--ease-out) var(--d),
-    transform 760ms var(--ease-out) var(--d),
+    opacity 480ms var(--ease-out) var(--d),
+    transform 640ms var(--ease-out) var(--d),
     color 160ms ease;
 }
 
@@ -251,7 +256,7 @@ body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
   font-size: 1em;
   user-select: none;
 }
-.view.is-in .seal { animation: stamp 700ms cubic-bezier(0.2, 0.9, 0.25, 1) both; }
+.view.is-in .seal { animation: stamp 600ms cubic-bezier(0.2, 0.9, 0.25, 1) both; }
 
 @keyframes stamp {
   0%   { opacity: 0;    transform: rotate(-11deg) scale(1.5); }
@@ -498,7 +503,7 @@ li:last-child > .row { border-bottom: 0; }
   justify-content: center;
   padding: 0 var(--gutter);
   font-size: clamp(15px, 0.45vw + 10.5px, 19px);
-  transition: opacity 700ms ease 950ms;
+  transition: opacity 600ms ease 600ms;
 }
 body.is-loading .contact { opacity: 0; }
 

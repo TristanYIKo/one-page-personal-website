@@ -157,8 +157,9 @@
     '<stop offset="0" stop-color="#D4614B"/><stop offset="1" stop-color="#B8322A"/></radialGradient>' +
     '<radialGradient id="sun-glow"><stop offset="0.55" stop-color="#C8503C" stop-opacity="0.22"/>' +
     '<stop offset="1" stop-color="#C8503C" stop-opacity="0"/></radialGradient></defs>' +
-    '<circle cx="50" cy="50" r="70" fill="url(#sun-glow)"/>' +
-    '<circle cx="50" cy="50" r="50" fill="url(#sun-fill)"/></svg>';
+    '<circle cx="50" cy="50" r="70" fill="url(#sun-glow)" class="sun-glow"/>' +
+    '<circle cx="50" cy="50" r="50" fill="url(#sun-fill)" class="sun-fill"/>' +
+    '<circle cx="50" cy="50" r="49" class="sun-ring" vector-effect="non-scaling-stroke"/></svg>';
 
   // Lit part of the disc for a given phase. Waxing is lit on the right in the
   // northern hemisphere and on the left in the southern.
@@ -215,7 +216,9 @@
 
     if (isDay) {
       x = bearingToX(sun.azimuth + PI, southern);
-      alt = clamp(sun.altitude / (PI / 2), 0, 1);
+      // Real altitude, drawn on a domed scale: it climbs quickly off the ridge
+      // and the arc rides high (a 27 deg winter noon sits about two-thirds up).
+      alt = clamp(Math.sqrt(Math.max(0, Math.sin(sun.altitude))), 0, 1);
       label = "sun";
     } else {
       // How far through tonight are we? Sunset -> sunrise.
@@ -232,7 +235,7 @@
       }
       // the moon follows the same east-to-west path, cresting mid-night
       x = clamp(southern ? 92 - p * 84 : 8 + p * 84, 4, 96);
-      alt = Math.sin(PI * p) * 0.55;
+      alt = 0.85 * Math.sqrt(Math.sin(PI * p));
       label = "moon";
     }
 
@@ -248,8 +251,9 @@
   }
 
   /* ---------- keep the text readable ----------
-     The position stays true, so sometimes it lands behind the content. When it
-     does, it fades to a soft wash instead of moving. */
+     The position stays true, so it often lands behind the content. When it
+     does, the sun turns into a thin red ring (like the seal) with a light wash
+     inside, and the moon softens, instead of either one moving. */
 
   function checkOverlap() {
     const view = document.querySelector(".view:not([hidden])");

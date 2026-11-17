@@ -48,12 +48,14 @@ Colours, spacing and the mountain heights are CSS variables at the top of `style
 
 `sky.js` puts a sun or a moon over the mountains based on the visitor's own clock:
 
-- **Day:** the sun is drawn where it really is in their sky. Its position comes
+- **Day:** the sun follows its real path through their sky. Its position comes
   from their local time and an approximate location taken from their time zone
-  (no location prompt). It rises and sets behind the peaks.
+  (no location prompt). It rises and sets behind the peaks, and the height is
+  drawn on a domed scale so the arc rides high even in winter.
 - **Night:** the moon crosses from sunset to sunrise, highest around the middle
   of the night, in tonight's real phase.
-- When it drifts behind the text it fades to a soft wash so nothing gets hard to read.
+- When it drifts behind the text, the sun becomes a thin red ring with a light
+  wash and the moon softens, so nothing gets hard to read.
 
 Preview any time by adding `?time=` to the URL, e.g. `index.html?time=07:30` or
 `?time=2026-06-21T13:00`.
