@@ -46,25 +46,24 @@
     <div class="mountains">
       <!-- sun by day, moon by night; placed by sky.js, sits behind both ranges -->
       <div class="sky"></div>
-      <!-- three ink-wash ridges, far to near: a touch darker at the peaks, fading into
-           mist. Kept close to the paper tones so they stay quiet. -->
+      <!-- three ink-wash ridges, far to near: darker at the peaks, fading into mist. -->
       <svg class="mtn" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
         <defs>
           <linearGradient id="inkFar" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#DDD5C6"/>
+            <stop offset="0" stop-color="#D3C8B5"/>
             <stop offset="1" stop-color="#EDE7DC" stop-opacity="0"/>
           </linearGradient>
           <linearGradient id="inkMid" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#D0C6B5"/>
-            <stop offset="0.85" stop-color="#E6DED0" stop-opacity="0.4"/>
+            <stop offset="0" stop-color="#C2B5A0"/>
+            <stop offset="0.85" stop-color="#E6DED0" stop-opacity="0.45"/>
           </linearGradient>
           <linearGradient id="inkNear" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#C6BBA8"/>
-            <stop offset="0.35" stop-color="#D8CEBD"/>
-            <stop offset="1" stop-color="#E2DACB"/>
+            <stop offset="0" stop-color="#B4A792"/>
+            <stop offset="0.35" stop-color="#D1C5B1"/>
+            <stop offset="1" stop-color="#DFD6C6"/>
           </linearGradient>
         </defs>
-        <path class="ridge ridge-far" fill="url(#inkFar)" d="M0 140 L180 80 L320 115 L520 35 L700 105 L880 65 L1060 125 L1260 45 L1440 98 L1600 70 L1600 300 L0 300 Z"/>
+        <path class="ridge ridge-far" fill="url(#inkFar)" d="M0 150 L180 98 L320 128 L520 72 L700 120 L880 88 L1060 135 L1260 78 L1440 112 L1600 92 L1600 300 L0 300 Z"/>
         <path class="ridge ridge-mid" fill="url(#inkMid)" d="M0 200 L220 155 L420 190 L640 125 L860 185 L1080 145 L1300 200 L1480 160 L1600 180 L1600 300 L0 300 Z"/>
         <path class="ridge ridge-near" fill="url(#inkNear)" d="M0 250 L280 215 L520 238 L800 205 L1080 240 L1360 212 L1600 230 L1600 300 L0 300 Z"/>
       </svg>
