@@ -137,13 +137,47 @@ const PROJECTS = [
   },
 ];
 
-// The #the-rest view. Placeholder text: rewrite it in your own words.
+// The #the-rest page: a grid of tiles. Hovering (or tapping) a tile swaps its
+// short line for the longer "story". The stories below are placeholders:
+// rewrite them in your own words.
+//   photo: an image in images/rest/ (e.g. "images/rest/koko.jpg"). "" shows a
+//          soft placeholder until you add one. Only the Koko and snowboarding
+//          tiles have a photo area.
 const THE_REST = {
-  intro: "Away from spreadsheets and models, this is where the time goes.",
-  items: [
-    { label: "gym", text: "Most mornings start with a lift. Consistency over intensity." },
-    { label: "golf", text: "Chasing a lower handicap one range bucket at a time." },
-    { label: "football", text: "Playing whenever I can, watching whenever I can't." },
+  intro: "Away from the work: a dog, a barbell, a snowboard, and a lot of good food.",
+  tiles: [
+    {
+      id: "koko", title: "Koko", note: "the dog",
+      line: "Head of security. Chief nap officer.",
+      story: "Never misses a doorbell, a dropped snack, or the warm spot on the couch the second you stand up.",
+      photo: "", photoAlt: "Koko the dog", placeholder: "photo of Koko",
+    },
+    {
+      id: "gym", title: "gym",
+      line: "Most mornings start here.",
+      story: "Early, before the day gets going. Progress over perfect.",
+    },
+    {
+      id: "food", title: "food",
+      line: "Will travel for a good meal.",
+      story: "Always hunting for the next great spot. Ask me for a rec.",
+    },
+    {
+      id: "snowboarding", title: "snowboarding",
+      line: "Winters belong to the mountain.",
+      story: "First chair whenever I can get it, still chasing a clean run through the trees.",
+      photo: "", photoAlt: "Snowboarding", placeholder: "snowboard photo",
+    },
+    {
+      id: "taekwondo", title: "taekwondo",
+      line: "Where the discipline started.",
+      story: "The mat is where I learned to show up, focus, and keep going.",
+    },
+    {
+      id: "golf", title: "golf",
+      line: "Occasionally. Humbling every time.",
+      story: "A few good shots, a lot of lost balls, always a good walk.",
+    },
   ],
 };
 
@@ -333,6 +367,41 @@ const THE_REST = {
     return view;
   }
 
+  // #the-rest: intro on the left, tiles on the right.
+  function restTile(t) {
+    const hasPhotoArea = "photo" in t;
+    const story = h("p", { class: "tile-story" }, t.story);
+    return h("article", { class: `tile tile-${t.id}${hasPhotoArea ? " has-photo" : ""}`, tabindex: "0", "data-a": true },
+      hasPhotoArea && h("div", { class: "tile-photo" },
+        t.photo
+          ? h("img", { src: t.photo, alt: t.photoAlt || t.title, loading: "lazy", decoding: "async" })
+          : h("span", { class: "tile-placeholder" }, t.placeholder || "photo"),
+        story),
+      h("div", { class: "tile-body" },
+        h("h3", { class: "tile-title" }, t.title,
+          t.note && h("span", { class: "tile-note" }, ` · ${t.note}`)),
+        h("div", { class: "tile-text" },
+          h("p", { class: "tile-line" }, t.line),
+          !hasPhotoArea && story)),
+      h("span", { class: "tile-mark", "aria-hidden": "true" }));
+  }
+
+  function restPage() {
+    const view = section("the-rest", "t-the-rest",
+      h("div", { class: "scroll" },
+        h("div", { class: "rest-layout" },
+          h("div", { class: "rest-side" },
+            backButton(),
+            h("h2", { class: "view-title rest-title", id: "t-the-rest", tabindex: "-1", "data-a": true }, "The rest"),
+            h("p", { class: "rest-intro", "data-a": true }, THE_REST.intro),
+            h("p", { class: "rest-hint", "data-a": true },
+              h("span", { class: "hint-hover" }, "hover a tile for the story"),
+              h("span", { class: "hint-tap" }, "tap a tile for the story"))),
+          h("div", { class: "tiles" }, THE_REST.tiles.map(restTile)))));
+    view.classList.add("view-rest");
+    return view;
+  }
+
   function render() {
     // home
     document.getElementById("home-name").textContent = PROFILE.name;
@@ -360,13 +429,7 @@ const THE_REST = {
       ...EXPERIENCE.map(rolePage),
       projectList(),
       ...PROJECTS.map(projectPage),
-      section("the-rest", "t-the-rest",
-        backButton(),
-        h("h2", { class: "view-title", id: "t-the-rest", tabindex: "-1", "data-a": true }, "The rest"),
-        h("div", { class: "scroll" },
-          h("p", { class: "rest-intro", "data-a": true }, THE_REST.intro),
-          h("dl", { class: "rest" }, THE_REST.items.map((it) =>
-            h("div", { "data-a": true }, h("dt", {}, it.label), h("dd", {}, it.text)))))),
+      restPage(),
     ];
     stage.append(...views);
 
@@ -483,6 +546,9 @@ const THE_REST = {
     if (e.target.closest(".back")) { go(""); return; }
     const thumb = e.target.closest(".thumb");
     if (thumb) showShot(thumb);
+    const tile = e.target.closest(".tile");
+    stage.querySelectorAll(".tile.is-open").forEach((t) => { if (t !== tile) t.classList.remove("is-open"); });
+    if (tile) tile.classList.toggle("is-open");
   });
 
   function showShot(thumb) {

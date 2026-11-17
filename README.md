@@ -15,7 +15,7 @@ Live: https://tristanyiko.github.io/one-page-personal-website/
 | `#experience/<slug>`     | one role's own page, with previous / next            |
 | `#projects`              | every project ("view all")                           |
 | `#projects/<slug>`       | one project's own page, with live and GitHub links   |
-| `#the-rest`              | the personal page                                    |
+| `#the-rest`              | the personal page (tiles with hover stories)         |
 
 Every "← back" button (and the Escape key) returns to the home screen; the
 browser back button retraces your steps.
@@ -30,7 +30,7 @@ All text and links live at the top of `script.js`, under **EDIT YOUR CONTENT HER
 | `PROFILE`    | name, tagline (`*stars*` mark the red words), roles, bio            |
 | `EXPERIENCE` | roles, newest first; the first three show on the home screen       |
 | `PROJECTS`   | projects; the first three show on the home screen                   |
-| `THE_REST`   | the personal page                                                   |
+| `THE_REST`   | the personal page: an intro and a grid of tiles                     |
 
 Each role and project has a `slug`, the short id in its link
 (`#projects/code-ranch`). Keep it lowercase with dashes, and unique in its list.
@@ -44,6 +44,11 @@ A project has a `summary`, a `stack`, optional `live` and `github` links (`""`
 hides one, for example a private repo) and `images`: 16:10 screenshots or GIFs
 in `images/projects/`, each with `alt` text. The first image shows first; with
 more than one, thumbnails appear underneath. About 1200 x 750 is plenty.
+
+On "the rest", each tile has a short `line` and a longer `story` that appears
+on hover (or tap on phones). The stories are placeholders to rewrite. The Koko
+and snowboarding tiles have a photo area: put a photo in `images/rest/` and set
+`photo: "images/rest/koko.jpg"`. Until then they show a soft placeholder.
 
 To add a CV, drop the PDF in this folder and set `LINKS.cv = "cv.pdf"`.
 
