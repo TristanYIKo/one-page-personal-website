@@ -15,12 +15,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
+  <script src="sky.js" defer></script>
 </head>
 <body class="is-loading is-first" data-view="home">
 
   <!-- Mountains: two layers pinned to the bottom, never stretched -->
   <div class="scene" aria-hidden="true">
     <div class="mountains">
+      <!-- sun by day, moon by night; placed by sky.js, sits behind both ranges -->
+      <div class="sky"></div>
       <svg class="mtn mtn-back" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" focusable="false">
         <path fill="#E2D9C8" d="M0 170 L180 110 L320 150 L520 60 L700 140 L880 95 L1060 160 L1260 70 L1440 135 L1600 105 L1600 300 L0 300 Z"/>
       </svg>

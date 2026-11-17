@@ -44,6 +44,20 @@ scrolling, so about four highlights per page keeps everything readable.
 
 Colours, spacing and the mountain heights are CSS variables at the top of `styles.css`.
 
+## Sun and moon
+
+`sky.js` puts a sun or a moon over the mountains based on the visitor's own clock:
+
+- **Day:** the sun is drawn where it really is in their sky. Its position comes
+  from their local time and an approximate location taken from their time zone
+  (no location prompt). It rises and sets behind the peaks.
+- **Night:** the moon crosses from sunset to sunrise, highest around the middle
+  of the night, in tonight's real phase.
+- When it drifts behind the text it fades to a soft wash so nothing gets hard to read.
+
+Preview any time by adding `?time=` to the URL, e.g. `index.html?time=07:30` or
+`?time=2026-06-21T13:00`.
+
 ## Preview locally
 
 Open `index.html` in a browser, or serve the folder:

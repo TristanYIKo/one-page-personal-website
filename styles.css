@@ -125,6 +125,43 @@ body.is-detail .mountains { transform: translateY(50%); }
 }
 .mtn-front { transition-delay: 140ms; }
 
+/* ---------- sun and moon (positioned by sky.js) ----------
+   It lives inside .mountains so it sinks with the horizon on detail views.
+   --x: 0-100 across the screen. --alt: 0 at the horizon (along the ridge
+   line, so it sets behind the peaks), 1 straight overhead. */
+
+.sky {
+  --orb: clamp(30px, 5.4vmin, 64px);
+  --horizon: calc(var(--mtn) * 0.7);
+  position: absolute;
+  left: calc(var(--x, 50) * 1%);
+  bottom: calc(var(--horizon) + var(--alt, 0.4) * (100vh - var(--horizon) - 15vh));
+  width: var(--orb);
+  height: var(--orb);
+  transform: translate(-50%, 50%);
+  transition: opacity 1400ms ease 500ms, transform 1800ms var(--ease-out) 500ms;
+}
+@supports (height: 1dvh) {
+  .sky { bottom: calc(var(--horizon) + var(--alt, 0.4) * (100dvh - var(--horizon) - 15dvh)); }
+}
+.sky svg {
+  display: block;
+  width: 140%;
+  height: 140%;
+  margin: -20%;
+  overflow: visible;
+}
+.sky[data-body="sun"] { opacity: 0.8; }
+.sky.is-behind { opacity: 0.5; }
+.sky.is-behind[data-body="sun"] { opacity: 0.26; }
+body:not(.is-loading) .sky { transition: opacity 600ms ease, transform 1800ms var(--ease-out); }
+body.is-first:not(.is-loading) .sky { transition-delay: 500ms; }
+.sky .moon-dark { fill: #E4DCCC; }
+.sky .moon-lit { fill: #FDFBF5; }
+.sky .moon-rim { fill: none; stroke: #CBBFA9; stroke-width: 1.4; }
+
+body.is-loading .sky { opacity: 0 !important; transform: translate(-50%, calc(50% + 28px)); }
+
 /* opening: both ranges start below the horizon and rise, the far one first */
 body.is-loading .mtn-back { transform: translateY(55%); opacity: 0; }
 body.is-loading .mtn-front { transform: translateY(85%); opacity: 0; }
@@ -527,6 +564,8 @@ body.is-loading .contact { opacity: 0; }
   .mountains { transition: none; }
   body.is-loading .mtn-back,
   body.is-loading .mtn-front { transform: none; }
+  body.is-loading .sky { transform: translate(-50%, 50%); }
+  .sky { transition: opacity 1000ms ease 400ms; }
   .mtn { transition: opacity 700ms ease; }
   .view.is-in .seal { animation-name: stamp-fade; animation-duration: 500ms; }
   .arrow, .row .label { transition: none; }
