@@ -86,6 +86,7 @@ const EXPERIENCE = [
 
 // Projects. The first three show on the home screen.
 // "live" and "github" are optional: "" hides that link (e.g. a private repo).
+// "points" is optional: a few short lines listed under the summary on the project's page.
 // "images" are 16:10 screenshots or GIFs in images/projects/, first one shown first.
 const PROJECTS = [
   {
@@ -126,14 +127,21 @@ const PROJECTS = [
     short: "RoastBot",
     tag: "AI",
     name: "RoastBot",
-    kind: "Web app · AI resume feedback",
-    summary: "An AI resume roaster that turns brutal feedback into friendly, actionable advice.",
-    stack: ["Next.js", "React", "Gemini API"],
+    kind: "Web app · AI resume review",
+    summary: "AI resume review that gives a score for the field you're targeting, a roast, and the fixes that matter most.",
+    points: [
+      "Six fields (software, data, business, finance, marketing, design), each weighting the categories differently.",
+      "Counts bullets, numbers, weak openers and buzzwords from the text before Gemini scores anything.",
+      "Caps any category those counts contradict. The overall score is computed in code, not by the model.",
+    ],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Gemini API"],
     live: "https://roastbot-three.vercel.app/",
     github: "https://github.com/TristanYIKo/AIResumeRoaster",
     images: [
-      { src: "images/projects/roastbot-1.webp", alt: "RoastBot upload screen with the robot mascot" },
-      { src: "images/projects/roastbot-2.webp", alt: "RoastBot upload screen, earlier illustrated design" },
+      { src: "images/projects/roastbot-1.webp", alt: "RoastBot home page: pick a field and drop in a resume" },
+      { src: "images/projects/roastbot-2.webp", alt: "RoastBot working through a software resume step by step" },
+      { src: "images/projects/roastbot-3.webp", alt: "A software resume scored 88 out of 100, with the roast underneath" },
+      { src: "images/projects/roastbot-4.webp", alt: "The three fixes to make first, beside the score for each category" },
     ],
   },
 ];
@@ -362,6 +370,8 @@ const THE_REST = {
             h("p", { class: "eyebrow" }, p.kind),
             h("h2", { class: "view-title pj-title", id, tabindex: "-1" }, p.name),
             h("p", { class: "pj-summary" }, p.summary),
+            p.points && p.points.length && h("ul", { class: "pj-points" },
+              p.points.map((t) => h("li", {}, accented(t)))),
             p.stack && p.stack.length && h("p", { class: "pj-stack" }, p.stack.join(" · ")),
             links.length && h("p", { class: "item-links" }, links)))),
       pager("projects", PROJECTS, i));
