@@ -115,9 +115,10 @@ const PROJECTS = [
     live: "https://factor-five.vercel.app/",
     github: "https://github.com/TristanYIKo/FactorFive",
     images: [
-      { src: "images/projects/factorfive-1.webp", alt: "FactorFive home page with a sample score of 72" },
-      { src: "images/projects/factorfive-2.webp", alt: "FactorFive analysis of Apple (AAPL)" },
-      { src: "images/projects/factorfive-3.webp", alt: "The five factors and the market calendar" },
+      { src: "images/projects/factorfive-1.webp", alt: "FactorFive home page with an example score of 70" },
+      { src: "images/projects/factorfive-2.webp", alt: "FactorFive analysis of Apple (AAPL) with a score of 50" },
+      { src: "images/projects/factorfive-3.webp", alt: "FactorFive market calendar in month view" },
+      { src: "images/projects/factorfive-4.webp", alt: "FactorFive market calendar listing upcoming releases and holidays" },
     ],
   },
   {
