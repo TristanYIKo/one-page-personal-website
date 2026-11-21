@@ -41,8 +41,7 @@ A role has a one-line `result` (shown on the timeline), a first-person `intro`,
 numbered `highlights` (each a `title` and `text`) and `tools` (shown as tags).
 Set `current: true` on the role you're in now to fill its timeline marker.
 
-A project has a `summary`, optional `points` (a few short lines listed under the
-summary on its page), a `stack`, optional `live` and `github` links (`""`
+A project has a `summary`, a `stack`, optional `live` and `github` links (`""`
 hides one, for example a private repo) and `images`: 16:10 screenshots or GIFs
 in `images/projects/`, each with `alt` text. The first image shows first; with
 more than one, thumbnails appear underneath. About 1200 x 750 is plenty.

@@ -657,24 +657,6 @@ li:last-child > .row { border-bottom: 0; }
 .pj-info { padding-top: 0.2em; }
 .pj-title { margin: 0.12em 0 0.35em; font-size: 2.5em; }
 .pj-summary { font-size: 1.2em; line-height: 1.6; color: var(--body); }
-.pj-points { margin-top: 0.9em; }
-.pj-points li {
-  position: relative;
-  padding-left: 1.1em;
-  line-height: 1.55;
-  color: var(--soft);
-}
-.pj-points li + li { margin-top: 0.4em; }
-.pj-points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: 0.45em;
-  height: 1px;
-  background: var(--accent);
-}
-.pj-points em { font-style: normal; color: var(--accent); }
 .pj-stack { margin-top: 0.9em; color: var(--secondary); }
 
 .item-links { display: flex; flex-wrap: wrap; gap: 0.3em 1.6em; margin-top: 1em; font-size: 1.05em; }
