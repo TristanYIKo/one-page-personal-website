@@ -639,6 +639,8 @@ li:last-child > .row { border-bottom: 0; }
   gap: 0.7em;
   margin-top: 0.8em;
 }
+/* five or six shots: one even row instead of four plus a straggler */
+.thumbs-many { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.5em; }
 .thumb {
   padding: 0;
   border: 0;

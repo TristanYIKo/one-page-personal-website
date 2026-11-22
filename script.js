@@ -99,9 +99,12 @@ const PROJECTS = [
     live: "https://code-ranch.vercel.app/",
     github: "",                   // repo is private
     images: [
-      { src: "images/projects/code-ranch-1.webp", alt: "Code Ranch home page: a pixel-art desert duel" },
-      { src: "images/projects/code-ranch-2.webp", alt: "Choosing a game mode on the Code Ranch play screen" },
-      { src: "images/projects/code-ranch-3.webp", alt: "How the duel works and the game modes" },
+      { src: "images/projects/code-ranch-1.webp", alt: "Code Ranch home page: a cowboy faces a bandit with code over his head" },
+      { src: "images/projects/code-ranch-2.webp", alt: "Ranch level panel with daily and weekly tasks" },
+      { src: "images/projects/code-ranch-3.webp", alt: "Global leaderboard ranked by average WPM" },
+      { src: "images/projects/code-ranch-4.webp", alt: "Friends list with each friend's level" },
+      { src: "images/projects/code-ranch-5.webp", alt: "Practice duel against a bot, racing through a Python snippet" },
+      { src: "images/projects/code-ranch-6.webp", alt: "A 60-second round, typing the line over the bandit's head" },
     ],
   },
   {
@@ -341,7 +344,7 @@ const THE_REST = {
         h("div", { class: "window" },
           h("div", { class: "window-bar", "aria-hidden": "true" }, h("i"), h("i"), h("i")),
           h("div", { class: "screen" }, screen))),
-      imgs.length > 1 && h("div", { class: "thumbs", role: "group", "aria-label": `${p.name} screenshots` },
+      imgs.length > 1 && h("div", { class: imgs.length > 4 ? "thumbs thumbs-many" : "thumbs", role: "group", "aria-label": `${p.name} screenshots` },
         imgs.map((im, k) => h("button", {
           type: "button", class: "thumb", "aria-pressed": k === 0 ? "true" : "false",
           "aria-label": `Screenshot ${k + 1}: ${im.alt}`, "data-src": im.src, "data-alt": im.alt,
